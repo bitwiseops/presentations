@@ -1,0 +1,20 @@
+title: "Hello World!"
+theme: ""
+slides: ""
+footer:
+  left: ""
+  center: ""
+  right: ""
+body_end: ""
+scripts: 
+  - 
+width: 0
+height: 0
+margin: 0
+min_scale: 0
+max_scale: 0
+plugins:
+  - "pluginName"
+reveal_options:
+  someOptKey: "'someOptVal'"
+show_notes_for_printing: false

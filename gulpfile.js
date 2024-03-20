@@ -3,6 +3,9 @@ const glob = require('glob')
 const yargs = require('yargs')
 const through = require('through2');
 const qunit = require('node-qunit-puppeteer')
+const yaml = require('js-yaml');
+const fs = require('fs');
+const path = require('path');
 
 const {rollup} = require('rollup')
 const terser = require('@rollup/plugin-terser')
@@ -19,6 +22,9 @@ const eslint = require('gulp-eslint')
 const minify = require('gulp-clean-css')
 const connect = require('gulp-connect')
 const autoprefixer = require('gulp-autoprefixer')
+const data = require('gulp-data');
+const ejs = require('gulp-ejs');
+const rename = require('gulp-rename');
 
 const root = yargs.argv.root || '.'
 const port = yargs.argv.port || 8000
@@ -319,3 +325,34 @@ gulp.task('serve', () => {
     gulp.watch(['test/*.html'], gulp.series('test'))
 
 })
+
+// Function to get YAML data from a file
+function getYamlData(file) {
+    return yaml.load(fs.readFileSync(file, 'utf8'));
+  }
+
+  // Process each slide directory
+function processSlides() {
+    const slidesDir = './slides/';
+    fs.readdirSync(slidesDir).filter(function (folder) {
+      return fs.statSync(path.join(slidesDir, folder)).isDirectory();
+    }).forEach(function (folder) {
+      const configPath = path.join(slidesDir, folder, 'config.yml');
+      const templatePath = path.join(slidesDir, 'index-template.html');
+      const slidePath = path.join(slidesDir, folder, 'slides.md');
+      const configData = getYamlData(configPath);
+
+      // Process template with config data
+      gulp.src(templatePath)
+        .pipe(ejs(configData))
+        .pipe(rename('index.html'))
+        .pipe(gulp.dest(`./${folder}/`));
+  
+      // Copy slides.md as is
+      gulp.src(slidePath)
+        .pipe(gulp.dest(`./${folder}/`));
+    });
+  }
+  
+  // Gulp task
+  gulp.task('generate_slides', processSlides);

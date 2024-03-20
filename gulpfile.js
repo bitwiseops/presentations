@@ -22,7 +22,6 @@ const eslint = require('gulp-eslint')
 const minify = require('gulp-clean-css')
 const connect = require('gulp-connect')
 const autoprefixer = require('gulp-autoprefixer')
-const data = require('gulp-data');
 const ejs = require('gulp-ejs');
 const rename = require('gulp-rename');
 
@@ -333,26 +332,42 @@ function getYamlData(file) {
     return yaml.load(fs.readFileSync(file, 'utf8'));
 }
 
+const OUT_DIR = 'gh-pages/';
+
 // Process each slide directory
 function processSlides(done) {
-    const slidesDir = './slides/';
+    const slidesDir = 'slides/';
     fs.readdirSync(slidesDir).filter(function (folder) {
         return fs.statSync(path.join(slidesDir, folder)).isDirectory();
     }).forEach(function (folder) {
         const configPath = path.join(slidesDir, folder, 'config.yml');
         const templatePath = path.join(slidesDir, 'index-template.html');
         const slidePath = path.join(slidesDir, folder, 'slides.md');
+        const assetsPath = path.join(slidesDir, folder, 'assets');
         const configData = getYamlData(configPath);
 
         // Process template with config data
         gulp.src(templatePath)
             .pipe(ejs(configData))
             .pipe(rename('index.html'))
-            .pipe(gulp.dest(`./${folder}/`));
+            .pipe(gulp.dest(path.join(OUT_DIR, folder)));
 
         // Copy slides.md as is
         gulp.src(slidePath)
-            .pipe(gulp.dest(`./${folder}/`));
+            .pipe(rename('slides.md'))
+            .pipe(gulp.dest(path.join(OUT_DIR, folder)));
+        
+        // Copy assets as is
+        if (fs.existsSync(assetsPath) && fs.readdirSync(assetsPath).length > 0){
+            fs.readdirSync(assetsPath).filter(function (file) {
+                return fs.statSync(path.join(assetsPath, file)).isFile();
+            }).forEach(function (file) {
+                gulp.src(path.join(assetsPath, file))
+                    .pipe(rename(file))
+                    .pipe(gulp.dest(path.join(OUT_DIR, folder, 'assets')));
+            });
+        }
+
     });
 
     done();
@@ -379,7 +394,7 @@ function processRoot(done) {
     gulp.src(templatePath)
         .pipe(ejs(configData))
         .pipe(rename('index.html'))
-        .pipe(gulp.dest(`./`));
+        .pipe(gulp.dest(`./gh-pages/`));
 
         done();
 }
@@ -388,4 +403,19 @@ function processRoot(done) {
 gulp.task('create_slides', processSlides);
 gulp.task('create_root', processRoot);
 
-gulp.task('generate', gulp.series('build', gulp.parallel('create_slides', 'create_root')));
+
+gulp.task('copy_dependencies', gulp.series(() =>
+
+    gulp.src(
+        [
+            './dist/**',
+            './assets/**',
+            './plugin/**',
+        ],
+        { base: './' }
+    )
+        .pipe(gulp.dest('./gh-pages/'))
+
+))
+
+gulp.task('generate', gulp.series('build', gulp.parallel('create_slides', 'create_root'), 'copy_dependencies'));

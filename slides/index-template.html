@@ -6,12 +6,12 @@
 	
 		<title><%= title %></title>
 	
-			<link rel="stylesheet" href="dist/reset.css">
-			<link rel="stylesheet" href="dist/reveal.css">
-			<link rel="stylesheet" href="dist/theme/<%= theme %>">
+			<link rel="stylesheet" href="/dist/reset.css">
+			<link rel="stylesheet" href="/dist/reveal.css">
+			<link rel="stylesheet" href="/dist/theme/<%= theme %>.css">
 	
 			<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+		<link rel="stylesheet" href="/plugin/highlight/monokai.css">
 	</head>
 	<body>
 		<div class="reveal">
@@ -22,18 +22,18 @@
 				<% if (locals.slides) { %>
 					<%- include(slides) %>
 				<% } else { %>
-					
+					<section data-markdown="./slides.md" data-separator="^\n---\n$" data-separator-vertical="^\n--\n$"></section>
 				<% } %>
 			</div>
 		</div>
 		
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
+		<script src="/dist/reveal.js"></script>
+		<script src="/plugin/notes/notes.js"></script>
+		<script src="/plugin/markdown/markdown.js"></script>
+		<script src="/plugin/highlight/highlight.js"></script>
 		
-		<script src="plugin/zoom/zoom.js"></script>
-		<script src="plugin/search/search.js"></script>
+		<script src="/plugin/zoom/zoom.js"></script>
+		<script src="/plugin/search/search.js"></script>
 		
 		<% if (locals.scripts) { %>
 			<%- include(scripts) %>	

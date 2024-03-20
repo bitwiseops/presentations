@@ -7,7 +7,7 @@ const yaml = require('js-yaml');
 const fs = require('fs');
 const path = require('path');
 
-const {rollup} = require('rollup')
+const { rollup } = require('rollup')
 const terser = require('@rollup/plugin-terser')
 const babel = require('@rollup/plugin-babel').default
 const commonjs = require('@rollup/plugin-commonjs')
@@ -63,14 +63,16 @@ const babelConfig = {
 // module support. Browsers are targeted explicitly instead
 // of using the "esmodule: true" target since that leads to
 // polyfilling older browsers and a larger bundle.
-const babelConfigESM = JSON.parse( JSON.stringify( babelConfig ) );
-babelConfigESM.presets[0][1].targets = { browsers: [
-    'last 2 Chrome versions',
-    'last 2 Safari versions',
-    'last 2 iOS versions',
-    'last 2 Firefox versions',
-    'last 2 Edge versions',
-] };
+const babelConfigESM = JSON.parse(JSON.stringify(babelConfig));
+babelConfigESM.presets[0][1].targets = {
+    browsers: [
+        'last 2 Chrome versions',
+        'last 2 Safari versions',
+        'last 2 iOS versions',
+        'last 2 Firefox versions',
+        'last 2 Edge versions',
+    ]
+};
 
 let cache = {};
 
@@ -83,10 +85,10 @@ gulp.task('js-es5', () => {
         plugins: [
             resolve(),
             commonjs(),
-            babel( babelConfig ),
+            babel(babelConfig),
             terser()
         ]
-    }).then( bundle => {
+    }).then(bundle => {
         cache.umd = bundle.cache;
         return bundle.write({
             name: 'Reveal',
@@ -106,10 +108,10 @@ gulp.task('js-es6', () => {
         plugins: [
             resolve(),
             commonjs(),
-            babel( babelConfigESM ),
+            babel(babelConfigESM),
             terser()
         ]
-    }).then( bundle => {
+    }).then(bundle => {
         cache.esm = bundle.cache;
         return bundle.write({
             file: './dist/reveal.esm.js',
@@ -131,65 +133,65 @@ gulp.task('plugins', () => {
         { name: 'RevealNotes', input: './plugin/notes/plugin.js', output: './plugin/notes/notes' },
         { name: 'RevealZoom', input: './plugin/zoom/plugin.js', output: './plugin/zoom/zoom' },
         { name: 'RevealMath', input: './plugin/math/plugin.js', output: './plugin/math/math' },
-    ].map( plugin => {
+    ].map(plugin => {
         return rollup({
-                cache: cache[plugin.input],
-                input: plugin.input,
-                plugins: [
-                    resolve(),
-                    commonjs(),
-                    babel({
-                        ...babelConfig,
-                        ignore: [/node_modules\/(?!(highlight\.js|marked)\/).*/],
-                    }),
-                    terser()
-                ]
-            }).then( bundle => {
-                cache[plugin.input] = bundle.cache;
-                bundle.write({
-                    file: plugin.output + '.esm.js',
-                    name: plugin.name,
-                    format: 'es'
-                })
+            cache: cache[plugin.input],
+            input: plugin.input,
+            plugins: [
+                resolve(),
+                commonjs(),
+                babel({
+                    ...babelConfig,
+                    ignore: [/node_modules\/(?!(highlight\.js|marked)\/).*/],
+                }),
+                terser()
+            ]
+        }).then(bundle => {
+            cache[plugin.input] = bundle.cache;
+            bundle.write({
+                file: plugin.output + '.esm.js',
+                name: plugin.name,
+                format: 'es'
+            })
 
-                bundle.write({
-                    file: plugin.output + '.js',
-                    name: plugin.name,
-                    format: 'umd'
-                })
-            });
-    } ));
+            bundle.write({
+                file: plugin.output + '.js',
+                name: plugin.name,
+                format: 'umd'
+            })
+        });
+    }));
 })
 
 // a custom pipeable step to transform Sass to CSS
 function compileSass() {
-  return through.obj( ( vinylFile, encoding, callback ) => {
-    const transformedFile = vinylFile.clone();
+    return through.obj((vinylFile, encoding, callback) => {
+        const transformedFile = vinylFile.clone();
 
-    sass.render({
-        data: transformedFile.contents.toString(),
-        file: transformedFile.path,
-    }, ( err, result ) => {
-        if( err ) {
-            callback(err);
-        }
-        else {
-            transformedFile.extname = '.css';
-            transformedFile.contents = result.css;
-            callback( null, transformedFile );
-        }
+        sass.render({
+            data: transformedFile.contents.toString(),
+            file: transformedFile.path,
+        }, (err, result) => {
+            if (err) {
+                callback(err);
+            }
+            else {
+                transformedFile.extname = '.css';
+                transformedFile.contents = result.css;
+                callback(null, transformedFile);
+            }
+        });
     });
-  });
 }
 
 gulp.task('css-themes', () => gulp.src(['./css/theme/source/*.{sass,scss}'])
-        .pipe(compileSass())
-        .pipe(gulp.dest('./dist/theme')))
+    .pipe(compileSass())
+    .pipe(gulp.dest('./dist/theme')))
 
 gulp.task('css-core', () => gulp.src(['css/reveal.scss'])
     .pipe(compileSass())
     .pipe(autoprefixer())
-    .pipe(minify({compatibility: 'ie9'}))
+    .pipe(minify({ compatibility: 'ie9' }))
     .pipe(header(banner))
     .pipe(gulp.dest('./dist')))
 
@@ -204,15 +206,15 @@ gulp.task('qunit', () => {
         name: 'test-server'
     }
 
-    let server = connect.server( serverConfig )
+    let server = connect.server(serverConfig)
 
-    let testFiles = glob.sync('test/*.html' )
+    let testFiles = glob.sync('test/*.html')
 
     let totalTests = 0;
     let failingTests = 0;
 
-    let tests = Promise.all( testFiles.map( filename => {
-        return new Promise( ( resolve, reject ) => {
+    let tests = Promise.all(testFiles.map(filename => {
+        return new Promise((resolve, reject) => {
             qunit.runQunitPuppeteer({
                 targetUrl: `http://${serverConfig.host}:${serverConfig.port}/${filename}`,
                 timeout: 20000,
@@ -220,7 +222,7 @@ gulp.task('qunit', () => {
                 puppeteerArgs: ['--allow-file-access-from-files']
             })
                 .then(result => {
-                    if( result.stats.failed > 0 ) {
+                    if (result.stats.failed > 0) {
                         console.log(`${'!'} ${filename} [${result.stats.passed}/${result.stats.total}] in ${result.stats.runtime}ms`.red);
                         // qunit.printResultSummary(result, console);
                         qunit.printFailedTests(result, console);
@@ -238,35 +240,35 @@ gulp.task('qunit', () => {
                     console.error(error);
                     reject();
                 });
-        } )
-    } ) );
+        })
+    }));
 
-    return new Promise( ( resolve, reject ) => {
+    return new Promise((resolve, reject) => {
 
-        tests.then( () => {
-                if( failingTests > 0 ) {
-                    reject( new Error(`${failingTests}/${totalTests} tests failed`.red) );
-                }
-                else {
-                    console.log(`${'✔'} Passed ${totalTests} tests`.green.bold);
-                    resolve();
-                }
-            } )
-            .catch( () => {
+        tests.then(() => {
+            if (failingTests > 0) {
+                reject(new Error(`${failingTests}/${totalTests} tests failed`.red));
+            }
+            else {
+                console.log(`${'✔'} Passed ${totalTests} tests`.green.bold);
+                resolve();
+            }
+        })
+            .catch(() => {
                 reject();
-            } )
-            .finally( () => {
+            })
+            .finally(() => {
                 server.close();
-            } );
+            });
 
-    } );
-} )
+    });
+})
 
 gulp.task('eslint', () => gulp.src(['./js/**', 'gulpfile.js'])
-        .pipe(eslint())
-        .pipe(eslint.format()))
+    .pipe(eslint())
+    .pipe(eslint.format()))
 
-gulp.task('test', gulp.series( 'eslint', 'qunit' ))
+gulp.task('test', gulp.series('eslint', 'qunit'))
 
 gulp.task('default', gulp.series(gulp.parallel('js', 'css', 'plugins'), 'test'))
 
@@ -285,7 +287,7 @@ gulp.task('package', gulp.series(() =>
         ],
         { base: './' }
     )
-    .pipe(zip('reveal-js-presentation.zip')).pipe(gulp.dest('./'))
+        .pipe(zip('reveal-js-presentation.zip')).pipe(gulp.dest('./'))
 
 ))
 
@@ -329,30 +331,61 @@ gulp.task('serve', () => {
 // Function to get YAML data from a file
 function getYamlData(file) {
     return yaml.load(fs.readFileSync(file, 'utf8'));
-  }
+}
 
-  // Process each slide directory
-function processSlides() {
+// Process each slide directory
+function processSlides(done) {
     const slidesDir = './slides/';
     fs.readdirSync(slidesDir).filter(function (folder) {
-      return fs.statSync(path.join(slidesDir, folder)).isDirectory();
+        return fs.statSync(path.join(slidesDir, folder)).isDirectory();
     }).forEach(function (folder) {
-      const configPath = path.join(slidesDir, folder, 'config.yml');
-      const templatePath = path.join(slidesDir, 'index-template.html');
-      const slidePath = path.join(slidesDir, folder, 'slides.md');
-      const configData = getYamlData(configPath);
+        const configPath = path.join(slidesDir, folder, 'config.yml');
+        const templatePath = path.join(slidesDir, 'index-template.html');
+        const slidePath = path.join(slidesDir, folder, 'slides.md');
+        const configData = getYamlData(configPath);
 
-      // Process template with config data
-      gulp.src(templatePath)
+        // Process template with config data
+        gulp.src(templatePath)
+            .pipe(ejs(configData))
+            .pipe(rename('index.html'))
+            .pipe(gulp.dest(`./${folder}/`));
+
+        // Copy slides.md as is
+        gulp.src(slidePath)
+            .pipe(gulp.dest(`./${folder}/`));
+    });
+
+    done();
+}
+
+// Process each slide directory
+function processRoot(done) {
+    const templatePath = './index-template.html';
+    const configData = getYamlData('./config.yml');
+    
+    configData.slides = [];
+    const slidesDir = './slides/';
+    fs.readdirSync(slidesDir).filter(function (folder) {
+        return fs.statSync(path.join(slidesDir, folder)).isDirectory();
+    }).forEach(function (folder) {
+        const slideConfig = getYamlData(path.join(slidesDir, folder, 'config.yml'));
+        configData.slides.push({
+            title: slideConfig.title,
+            path: folder
+        });
+    });
+
+    // Process template with config data
+    gulp.src(templatePath)
         .pipe(ejs(configData))
         .pipe(rename('index.html'))
-        .pipe(gulp.dest(`./${folder}/`));
-  
-      // Copy slides.md as is
-      gulp.src(slidePath)
-        .pipe(gulp.dest(`./${folder}/`));
-    });
-  }
-  
-  // Gulp task
-  gulp.task('generate_slides', processSlides);
+        .pipe(gulp.dest(`./`));
+
+        done();
+}
+
+// Gulp task
+gulp.task('create_slides', processSlides);
+gulp.task('create_root', processRoot);
+
+gulp.task('generate', gulp.series('build', gulp.parallel('create_slides', 'create_root')));

@@ -24,6 +24,7 @@ const connect = require('gulp-connect')
 const autoprefixer = require('gulp-autoprefixer')
 const ejs = require('gulp-ejs');
 const rename = require('gulp-rename');
+const prettify = require('gulp-prettify');
 
 const root = yargs.argv.root || '.'
 const port = yargs.argv.port || 8000
@@ -290,7 +291,7 @@ gulp.task('package', gulp.series(() =>
 
 ))
 
-gulp.task('reload', () => gulp.src(['index.html'])
+gulp.task('reload', () => gulp.src(['index-template.html'])
     .pipe(connect.reload()));
 
 gulp.task('serve', () => {
@@ -332,7 +333,7 @@ function getYamlData(file) {
     return yaml.load(fs.readFileSync(file, 'utf8'));
 }
 
-const OUT_DIR = 'gh-pages/';
+const OUT_DIR = './gh-pages/';
 
 // Process each slide directory
 function processSlides(done) {
@@ -345,17 +346,31 @@ function processSlides(done) {
         const slidePath = path.join(slidesDir, folder, 'slides.md');
         const assetsPath = path.join(slidesDir, folder, 'assets');
         const configData = getYamlData(configPath);
+        const folderPath = path.join(slidesDir, folder);
 
         // Process template with config data
         gulp.src(templatePath)
             .pipe(ejs(configData))
+            .pipe(prettify({
+                indent_size: 2, // Set options according to your project's coding standards
+                wrap_attributes: 'auto' // Example option: wraps attributes to new lines
+              }))
             .pipe(rename('index.html'))
             .pipe(gulp.dest(path.join(OUT_DIR, folder)));
 
         // Copy slides.md as is
-        gulp.src(slidePath)
-            .pipe(rename('slides.md'))
-            .pipe(gulp.dest(path.join(OUT_DIR, folder)));
+        // gulp.src(slidePath)
+        //     .pipe(rename('slides.md'))
+        //     .pipe(gulp.dest(path.join(OUT_DIR, folder)));
+        
+
+        fs.readdirSync(folderPath).filter(function (file) {
+            return fs.statSync(path.join(folderPath, file)).isFile() && file.endsWith('.md');
+        }).forEach(function (file) {
+            gulp.src(path.join(folderPath, file))
+                .pipe(rename(file))
+                .pipe(gulp.dest(path.join(OUT_DIR, folder)));
+        });
         
         // Copy assets as is
         if (fs.existsSync(assetsPath) && fs.readdirSync(assetsPath).length > 0){
@@ -393,6 +408,10 @@ function processRoot(done) {
     // Process template with config data
     gulp.src(templatePath)
         .pipe(ejs(configData))
+        .pipe(prettify({
+            indent_size: 2, // Set options according to your project's coding standards
+            wrap_attributes: 'auto' // Example option: wraps attributes to new lines
+          }))
         .pipe(rename('index.html'))
         .pipe(gulp.dest(`./gh-pages/`));
 
@@ -403,9 +422,7 @@ function processRoot(done) {
 gulp.task('create_slides', processSlides);
 gulp.task('create_root', processRoot);
 
-
-gulp.task('copy_dependencies', gulp.series(() =>
-
+function copy_deps(done) {
     gulp.src(
         [
             './dist/**',
@@ -416,6 +433,35 @@ gulp.task('copy_dependencies', gulp.series(() =>
     )
         .pipe(gulp.dest('./gh-pages/'))
 
-))
+    done();
+}
+gulp.task('copy_dependencies', copy_deps)
 
 gulp.task('generate', gulp.series('build', gulp.parallel('create_slides', 'create_root'), 'copy_dependencies'));
+
+gulp.task('serve_gh_pages', () => {
+
+    connect.server({
+        root: OUT_DIR,
+        port: 8080,
+        host: 'localhost',
+        livereload: true
+    })
+
+    gulp.watch(['js/**'], gulp.series('js', 'copy_dependencies', 'reload', 'eslint'))
+
+    gulp.watch(['plugin/**/plugin.js', 'plugin/**/*.html'], gulp.series('plugins', 'reload'))
+
+    gulp.watch([
+        'css/theme/source/**/*.{sass,scss}',
+        'css/theme/template/*.{sass,scss}',
+    ], gulp.series('css-themes', 'copy_dependencies', 'reload'))
+
+    gulp.watch([
+        'css/*.scss',
+        'css/print/*.{sass,scss,css}'
+    ], gulp.series('css-core', 'copy_dependencies', 'reload'))
+
+    gulp.watch(['slides/**/*'], gulp.series(gulp.parallel('create_slides', 'create_root'), 'copy_dependencies', 'reload'))
+
+});

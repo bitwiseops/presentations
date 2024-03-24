@@ -140,7 +140,7 @@ body {
   counter-reset: li
 }
 
-li::before {
+.reveal section li::before {
   content: counter(li);
   color: #23A3DD;
   display: inline-block;
@@ -148,11 +148,11 @@ li::before {
   margin-left: -1em
 }
 
-li {
+.reveal li {
   counter-increment: li
 }
 
-.reveal ol li::before {
+.reveal section ol li::before {
   content: counter(li);
   color: #23A3DD;
   display: inline-block;
@@ -167,7 +167,7 @@ li {
   list-style-type: none;
 }
 
-li::before {
+.reveal section li::before {
   content: "•";
   color: #23A3DD;
   display: inline-block;

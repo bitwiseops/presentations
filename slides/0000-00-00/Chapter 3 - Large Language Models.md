@@ -47,9 +47,11 @@ A large language model is a type of artificial intelligence algorithm designed t
 
 --
 
+<!-- .slide: class="align-center" -->
+
 ## Attention Is All You Need
 
-![[1706.03762.pdf]]
+<div class="pdf"><!-- { "pdf": "assets/1706.03762.pdf" } --></div>
 
 Notes: 
 Developed by Google, BERT was one of the first transformer-based models to use bidirectional training to understand the context of words in a sentence. It significantly improved the performance of NLP tasks such as question answering and language inference.

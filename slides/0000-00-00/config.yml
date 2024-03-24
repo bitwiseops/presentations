@@ -1,6 +1,6 @@
 title: "Hello World!"
 theme: "cloudogu"
-slides: 'C:\Users\bitwise\projects\presentations\slides\0000-00-00\slides.html'
-width: 1920
-height: 1080
+slides: true
+width: 960
+height: 700
 show_notes_for_printing: false

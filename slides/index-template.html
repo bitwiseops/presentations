@@ -25,13 +25,13 @@
 	<body>
 		<div class="reveal">
 			<% if (locals.footer) { %>
-				<%- include(footer) %>
+				<%- include('footer.html') %>
 			<% } %>
 			<div class="slides">
 				<% if (locals.slides) { %>
-					<%- include(slides) %>
+					<%- include('slides.html') %>
 				<% } else { %>
-					<section data-markdown="./slides.md" data-separator="^(\r)?\n---(\r)?\n$" data-separator-vertical="^(\r)?\n--(\r)?\n$"></section>
+					<section data-markdown="./slides.md" data-separator="^(\r)?\n(\r)?---(\r)?\n(\r)?$" data-separator-vertical="^(\r)?\n(\r)?--(\r)?\n(\r)?$"></section>
 				<% } %>
 			</div>
 		</div>
@@ -45,30 +45,24 @@
 		<script src="/plugin/search/search.js"></script>
 		<script src="/plugin/chalkboard/plugin.js"></script>
 		<script src="/plugin/customcontrols/plugin.js"></script>
+		<script src="/plugin/anything/plugin.js"></script>
+		<script src="/libs/pdfjs/build/pdf.mjs" type="module"></script>
 		
 		<% if (locals.scripts) { %>
-			<%- include(scripts) %>	
+			<%- include('scripts.html') %>	
 		<% } %>
 		<script>
-				const showNotesForPrinting = <%= show_notes_for_printing %>;
 			
-				const showNotes = showNotesForPrinting && window.location.search.startsWith('?print-pdf') ? "separate-page" : undefined;
-				
 				// More info about initialization & config:
 				// - https://revealjs.com/initialization/
 				// - https://revealjs.com/config/
 				Reveal.initialize({
 					hash: true,
-					<% if(locals.width) { %> width: <%= width %>, <% } %>
-					<% if(locals.height) { %> height: <%= height %>, <% } %>
-					<% if(locals.margin) { %> margin: <%= margin %>, <% } %>
-					<% if(locals.min_scale) { %> min_scale: <%= min_scale %>, <% } %>
-					<% if(locals.max_scale) { %> max_scale: <%= max_scale %>, <% } %>
 					history: true,
 					pdfSeparateFragments : false,
 					// Use the default (h.v), because the printed version will always have this anyway
 					slideNumber: 'true',
-					showNotes: showNotes,
+					showNotes: false,
 					customcontrols: {
 						controls: [
 						{ icon: '<i class="fa fa-pen-square"></i>',
@@ -81,9 +75,6 @@
 						},
 						]
 					},
-					chalkboard: {
-						// add configuration here
-					},
 					// Learn about plugins: https://revealjs.com/plugins/
 					plugins: [ 
 						// Interpret Markdown in <section> elements
@@ -95,94 +86,81 @@
 						// Zoom in and out with Ctrl+Alt+click
 						RevealZoom,
 						RevealMath,
-						RevealChalkboard,
-						RevealCustomControls,
 						// Search slides  with Ctrl+Shift+f
 						RevealSearch,
-						<% if (locals.plugins) { %>
-							<% plugins.forEach(plugin => { %>
-								<%= plugin %>,
-							<% }); %>
-						<% } %>
-					],
-					<% if (locals.reveal_options) 
-						{ %>
-							<% Object.keys(reveal_options).forEach(optionKey => { %>
-								<%= optionKey %>: <%- reveal_options[optionKey] %>,
-							<% }); %>
-						<% } %>
+						RevealChalkboard,
+						RevealCustomControls,
+						RevealAnything
+						],
+						anything: [
+							{className: "pdf",
+							defaults: {},
+							initialize: (function(container, options){
+
+								// <iframe src="/libs/pdfjs/web/viewer.html?file=lix-236-433.pdf" width="100%" height="500"></iframe>
+								var url = options.pdf;
+								var pdf = document.createElement('iframe');
+								pdf.src = '/libs/pdfjs/web/viewer.html?file=' + window.location.origin +'/' + '<%- folder %>' + '/' + options.pdf;
+								pdf.width = '100%';
+								pdf.height = '500';
+								container.appendChild(pdf);
+							}
+							)},
+							{
+							className: "pdf-old",
+							defaults: {},
+							initialize: (function(container, options){
+								var url = options.pdf;
+								// Loaded via <script> tag, create shortcut to access PDF.js exports.
+								var { pdfjsLib } = globalThis;
+								// The workerSrc property shall be specified.
+								pdfjsLib.GlobalWorkerOptions.workerSrc = '/libs/pdfjs/build/pdf.worker.mjs';
+								// Asynchronous download of PDF
+								var loadingTask = pdfjsLib.getDocument(url);
+								loadingTask.promise
+									.then((pdf) => {
+										for (let i = 1; i <= pdf.numPages; i++) {
+											canvasId = appendCanvasForPDFPage(container);
+											renderPDFPage(pdf, i, canvasId);
+										}									
+									}, function (reason) {
+									// PDF loading error
+									console.error(reason);
+									});
+								}
+								)
+							},
+							],
 				});
 
-				Reveal.on( 'ready', event => {
-					evaluateInAndExcludeLocations();
-				} );
-				
-				setPresenterMode(false); // Disable presentation remote mode by default
-				setWarpMenu(false); // Show warp menu by default
+				function appendCanvasForPDFPage(container){
+					var canvas = document.createElement('canvas');
+					canvas.id = 'canvas-' + Math.random().toString(36).substr(2, 9);
+					container.appendChild(canvas);
+					return canvas.id;
+				}
 
-				Reveal.addKeyBinding( { keyCode: 188, key: ',', description: 'Toggle mapping ⬅/➡️ keys to prev/next slide, instead of left/right.' },
-						() => {
-					// Support for presentation remotes - press comma to toggle presenterMode mode, i.e. ⬅/➡️ keys map to
-					// prev/next slide, instead of left/right
-					setPresenterMode(true)
-				} )
-				
-				Reveal.addKeyBinding( { keyCode: 87, key: 'w' },
-						() => {
-					// Cloudogu Ecosystem: Toggle Warp menu by pressing 'w'
-					// As this is an edge case, dont add to description
-					setWarpMenu(true)
-				} )
-	
-				function setPresenterMode(toggle) {
-					const storage = localStorage;
-					const storageKey = 'presenterMode';
-					if (toggle) {
-						storage.setItem(storageKey, JSON.stringify(!JSON.parse(storage.getItem(storageKey))));
-					}
-					const presenterMode = JSON.parse(storage.getItem(storageKey));
-					if (presenterMode) {
-						Reveal.addKeyBinding({keyCode: 39}, 'next');
-						Reveal.addKeyBinding({keyCode: 37}, 'prev');
-					} else {
-						Reveal.removeKeyBinding(37);
-						Reveal.removeKeyBinding(39);
-					}
-					console.log(`Set presenter mode: ${storage.getItem(storageKey)}`);
+				function renderPDFPage(pdf, pageNumber, canvasId){
+					pdf
+						.getPage(pageNumber)
+						.then((page) => {
+							console.log('Page loaded', canvas);
+							var scale = 1.5;
+							var viewport = page.getViewport({scale: scale});
+							// Prepare canvas using PDF page dimensions
+							var canvas = document.getElementById(canvasId);
+							var context = canvas.getContext('2d');
+							canvas.height = viewport.height;
+							canvas.width = viewport.width;
+							// Render PDF page into canvas context
+							var renderContext = {
+								canvasContext: context,
+								viewport: viewport
+							};
+							var renderTask = page.render(renderContext);
+						});
 				}
 				
-				function setWarpMenu(toggle) {
-					if (!document.getElementById("warp-menu-container")) return
-					
-					const storage = localStorage;
-					const storageKey = 'hideWarpMenu';
-					if (toggle) {
-						storage.setItem(storageKey, JSON.stringify(!JSON.parse(storage.getItem(storageKey))));
-					}
-					const hideWarpMenu = JSON.parse(storage.getItem(storageKey));
-					if (hideWarpMenu) {
-						document.getElementById("warp-menu-container").style.display = 'none'
-					} else {
-						document.getElementById("warp-menu-container").style.display = ''
-					}
-					console.log(`Set presenter mode: ${storage.getItem(storageKey)}`);
-				}
-				
-				function relativeUrl() {
-					return window.location.pathname + window.location.search
-				}
-				
-				function evaluateInAndExcludeLocations() {
-					document.querySelectorAll('section[exclude-location]').forEach(element => {
-						if (relativeUrl().match(new RegExp(element.getAttribute('exclude-location'), 'gi'))) {
-							element.parentNode.removeChild( element );
-						}});
-			
-					document.querySelectorAll('section[include-location]').forEach(element => {
-						if (!relativeUrl().match(new RegExp(element.getAttribute('include-location'), 'gi'))) {
-							element.remove()
-						}})
-				}
 		</script>
 		<% if (locals.body_end) { %>
 			<%- include(body_end) %>

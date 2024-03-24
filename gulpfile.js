@@ -343,14 +343,17 @@ function processSlides(done) {
     }).forEach(function (folder) {
         const configPath = path.join(slidesDir, folder, 'config.yml');
         const templatePath = path.join(slidesDir, 'index-template.html');
-        const slidePath = path.join(slidesDir, folder, 'slides.md');
         const assetsPath = path.join(slidesDir, folder, 'assets');
-        const configData = getYamlData(configPath);
         const folderPath = path.join(slidesDir, folder);
+        
+        const configData = getYamlData(configPath);
+        configData.folder = folder;
 
         // Process template with config data
         gulp.src(templatePath)
-            .pipe(ejs(configData))
+            .pipe(ejs(configData, {
+                views: [folderPath]
+            }))
             .pipe(prettify({
                 indent_size: 2, // Set options according to your project's coding standards
                 wrap_attributes: 'auto' // Example option: wraps attributes to new lines
@@ -428,6 +431,7 @@ function copy_deps(done) {
             './dist/**',
             './assets/**',
             './plugin/**',
+            './libs/**',
         ],
         { base: './' }
     )

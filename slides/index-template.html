@@ -6,12 +6,21 @@
 	
 		<title><%= title %></title>
 	
-			<link rel="stylesheet" href="/dist/reset.css">
-			<link rel="stylesheet" href="/dist/reveal.css">
-			<link rel="stylesheet" href="/dist/theme/<%= theme %>.css">
+		<link rel="stylesheet" href="/dist/reset.css">
+		<link rel="stylesheet" href="/dist/reveal.css">
+		<link rel="stylesheet" href="/dist/theme/<%= theme %>.css">
 	
 			<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="/plugin/highlight/monokai.css">
+
+		<!-- Font awesome is required for the chalkboard plugin -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+		<link rel="stylesheet" href="/plugin/chalkboard/style.css">
+		<link rel="stylesheet" href="/plugin/customcontrols/style.css">
+
+
 	</head>
 	<body>
 		<div class="reveal">
@@ -22,7 +31,7 @@
 				<% if (locals.slides) { %>
 					<%- include(slides) %>
 				<% } else { %>
-					<section data-markdown="./slides.md" data-separator="^\n---\n$" data-separator-vertical="^\n--\n$"></section>
+					<section data-markdown="./slides.md" data-separator="^(\r)?\n---(\r)?\n$" data-separator-vertical="^(\r)?\n--(\r)?\n$"></section>
 				<% } %>
 			</div>
 		</div>
@@ -31,9 +40,11 @@
 		<script src="/plugin/notes/notes.js"></script>
 		<script src="/plugin/markdown/markdown.js"></script>
 		<script src="/plugin/highlight/highlight.js"></script>
-		
+        <script src="/plugin/math/math.js"></script>
 		<script src="/plugin/zoom/zoom.js"></script>
 		<script src="/plugin/search/search.js"></script>
+		<script src="/plugin/chalkboard/plugin.js"></script>
+		<script src="/plugin/customcontrols/plugin.js"></script>
 		
 		<% if (locals.scripts) { %>
 			<%- include(scripts) %>	
@@ -58,6 +69,21 @@
 					// Use the default (h.v), because the printed version will always have this anyway
 					slideNumber: 'true',
 					showNotes: showNotes,
+					customcontrols: {
+						controls: [
+						{ icon: '<i class="fa fa-pen-square"></i>',
+							title: 'Toggle chalkboard (B)',
+							action: 'RevealChalkboard.toggleChalkboard();'
+						},
+						{ icon: '<i class="fa fa-pen"></i>',
+							title: 'Toggle notes canvas (C)',
+							action: 'RevealChalkboard.toggleNotesCanvas();'
+						},
+						]
+					},
+					chalkboard: {
+						// add configuration here
+					},
 					// Learn about plugins: https://revealjs.com/plugins/
 					plugins: [ 
 						// Interpret Markdown in <section> elements
@@ -68,6 +94,9 @@
 						RevealNotes, 
 						// Zoom in and out with Ctrl+Alt+click
 						RevealZoom,
+						RevealMath,
+						RevealChalkboard,
+						RevealCustomControls,
 						// Search slides  with Ctrl+Shift+f
 						RevealSearch,
 						<% if (locals.plugins) { %>

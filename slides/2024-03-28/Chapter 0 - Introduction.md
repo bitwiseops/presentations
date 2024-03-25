@@ -54,6 +54,7 @@ The space contains all the possible algorithms; some of them are related to AI. 
 --
 
 <!-- .slide: class="align-center" -->
+
 ## Characteristica Universalis
 
 
@@ -87,7 +88,7 @@ The Turing Test was designed to assess a machine’s ability to exhibit intellig
 
 > ChatGPT-4 exhibits behavioral and personality traits that are statistically indistinguishable from a random human from tens of thousands of human subjects from more than 50 countries.
 
-<small style="float:right">[A Turing test of whether AI chatbots are behaviorally similar to humans](https://www.pnas.org/doi/10.1073/pnas.2313925121)</small>
+<small style="float:right; font-size:xx-small">[A Turing test of whether AI chatbots are behaviorally similar to humans](https://www.pnas.org/doi/10.1073/pnas.2313925121)</small>
 
 --
 
@@ -112,7 +113,7 @@ of current language models**
 
 > An ability is emergent if it is not present in smaller models but is present in larger models.
 
-<small style="float:right; font-size:tiny">Emergent Abilities of Large Language Models, Transactions on Machine Learning Research (08/2022)</small>
+<small style="float:right; font-size:xx-small">Emergent Abilities of Large Language Models, Transactions on Machine Learning Research (08/2022)</small>
 
 
 
@@ -121,7 +122,7 @@ of current language models**
 <!-- .slide: class="align-center" -->
 
 <img src="assets/emergent.png">
-<small style="font-size:tiny">Emergent Abilities of Large Language Models, Transactions on Machine Learning Research (08/2022)</small>
+<small style="font-size:xx-small">Emergent Abilities of Large Language Models, Transactions on Machine Learning Research (08/2022)</small>
 
 Notes:
 On most tasks, performance improved predictably and smoothly as the models scaled up — the larger the model, the better it got. But with other tasks, the jump in ability wasn’t smooth. The performance remained near zero for a while, then performance jumped. Other studies found similar leaps in ability. 
@@ -132,7 +133,7 @@ Researchers noted that these behaviors are not only surprising but unpredictable
 
 > Strong claims of emergence have as much to do with the way we choose to measure as they do with what the models are doing.
 
-<small style="float:right; font-size:tiny">Are Emergent Abilities of Large Language Models a Mirage? arXiv:2304.15004 (05/2023)</small>
+<small style="float:right; font-size:xx-small">Are Emergent Abilities of Large Language Models a Mirage? arXiv:2304.15004 (05/2023)</small>
 
 Notes: 
 No one is disputing that large enough LLMs can complete tasks that smaller models can’t, including ones for which they weren’t trained.  LLMs become more effective as they scale up; in fact, the added complexity of larger models should make it possible to get better at more difficult and diverse problems. Whether this improvement looks smooth and predictable or jagged and sharp **results from the choice of metric — or even a paucity of test examples — rather than the model’s inner workings**.
@@ -143,7 +144,7 @@ No one is disputing that large enough LLMs can complete tasks that smaller model
 
 <img src="assets/emergent-rexamined.svg" width="40%">
 
-<small style="font-size:tiny;"> [How Quickly Do Large Language Models Learn Unexpected Skills?](https://www.quantamagazine.org/how-quickly-do-large-language-models-learn-unexpected-skills-20240213/) </small>
+<small style="font-size:xx-small;"> [How Quickly Do Large Language Models Learn Unexpected Skills?](https://www.quantamagazine.org/how-quickly-do-large-language-models-learn-unexpected-skills-20240213/) </small>
 
 Notes:
 **Three-digit addition offers an example**. In the 2022 BIG-bench study, researchers reported that with fewer parameters, both GPT-3 and another LLM named LAMDA failed to accurately complete addition problems. However, when GPT-3 trained using 13 billion parameters, its ability changed as if with the flip of a switch. Suddenly, it could add — and LAMDA could, too, at 68 billion parameters. This suggests that the ability to add emerges at a certain threshold.
@@ -162,7 +163,7 @@ So instead, Koyejo and his collaborators tested the same task using a metric tha
 
 <img src="assets/conscious_ai.png" width="50%">
 
-<small style="font-size:tiny;">  [New York Times Article](https://www.nytimes.com/2022/07/23/technology/google-engineer-artificial-intelligence.html) </small> 
+<small style="font-size:xx-small;">  [New York Times Article](https://www.nytimes.com/2022/07/23/technology/google-engineer-artificial-intelligence.html) </small> 
 
 Notes:
 There are reported examples of individuals who believe that ChatGPT is conscious. As reported by The New York Times on 23 July 2022 (accessed on 23 July 2022), Google fired engineer Blake Lemoine for claiming that Google’s Language Model for Dialogue Applications (LaMDA) was sentient, (i.e., experiencing sensations, perceptions, and other subjective experiences). 
@@ -175,7 +176,7 @@ There are reported examples of individuals who believe that ChatGPT is conscious
 
 <img src="assets/KahnemanTypes.png" width="80%">
 
-<small style="font-size:tiny; ">  [Thing 1 and Thing 2 ](https://www.rogerleishman.com/2017/12/thing1.html) </small> 
+<small style="font-size:xx-small; ">  [Thing 1 and Thing 2 ](https://www.rogerleishman.com/2017/12/thing1.html) </small> 
 
 
 Notes:
@@ -195,7 +196,7 @@ According to Kahneman’s description, **being on the “System 1” level means
 
 > A model is thus better if it can explain more with less
 
-<small style="font-size:tiny; float:right">  [Compression is Comprehension: The Unreasonable Effectiveness of Digital Computation in the Natural World](https://arxiv.org/pdf/1904.10258v3.pdf) </small> 
+<small style="font-size:xx-small; float:right">  [Compression is Comprehension: The Unreasonable Effectiveness of Digital Computation in the Natural World](https://arxiv.org/pdf/1904.10258v3.pdf) </small> 
 
 Notes:
 In information theory, compression is about representing information in a way that reduces redundancy without losing the essence of the original data. This is done through various **algorithms that identify patterns** and represent them more efficiently.

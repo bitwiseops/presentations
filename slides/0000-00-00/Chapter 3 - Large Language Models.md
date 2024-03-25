@@ -4,8 +4,6 @@
 
 ## What is a Language Model?
 
---
-
 A language model is a statistical and computational tool that enables a computer to understand, interpret, and generate human language based on the likelihood of occurrence of words and sequences of words. 
 
 --

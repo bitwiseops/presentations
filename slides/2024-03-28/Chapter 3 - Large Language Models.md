@@ -114,3 +114,8 @@ Large language models (LLMs) can also be categorized based on their availability
 
 --
 
+
+## Extras
+
+- [LLM Visualization](https://bbycroft.net/llm)
+- ["Spreadsheets are all you need" Project](https://spreadsheets-are-all-you-need.ai)

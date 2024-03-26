@@ -30,7 +30,7 @@
 --
 
 
-## Simple Definition
+## Definition
 
 
 A **Large Language Model** (LLM) is a *type of artificial intelligence (AI) algorithm* that uses deep learning (DL) and natural language processing (NLP) techniques over massively large data sets to understand, summarize, generate and predict new content.

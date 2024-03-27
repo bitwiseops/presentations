@@ -98,11 +98,11 @@
 							{className: "pdf",
 							defaults: {},
 							initialize: (function(container, options){
+								// get first child url component from window.location
+								var url = window.location.pathname.split('/')[1];
 
-								// <iframe src="/libs/pdfjs/web/viewer.html?file=lix-236-433.pdf" width="100%" height="500"></iframe>
-								var url = options.pdf;
 								var pdf = document.createElement('iframe');
-								pdf.src = '../libs/pdfjs/web/viewer.html?file=' + window.location.origin +'/' + '<%- folder %>' + '/' + options.pdf;
+								pdf.src = '../libs/pdfjs/web/viewer.html?file=' + window.location.pathname + options.pdf;
 								pdf.width = '100%';
 								pdf.height = '500';
 								container.appendChild(pdf);

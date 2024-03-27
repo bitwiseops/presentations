@@ -39,7 +39,6 @@ A large language model is a type of artificial intelligence algorithm designed t
 
 --
 
-
 <div class="timeline" style="width: 100%; height: 500px"> <!-- {"url": "assets/timeline.json"} --> </div>
 
 --
@@ -55,25 +54,17 @@ TODO
 
 --
 
-### Sparse Models
+<!-- .slide: class="align-center" -->
 
-- **Mixture of Experts (MoE)**
 
-### Hybrid Models
+## LLM Visualization
 
-- **ERNIE (Enhanced Representation through kNowledge Integration)**
-
-Notes:
-The MoE architecture involves a set of expert models (typically, neural networks) where each expert is trained on a subset of the data. A gating mechanism decides which expert to use for a given input. This approach allows for more scalable and efficient training on large datasets.
-
-Developed by Baidu, ERNIE is designed to better understand the syntax and semantic information in a language by integrating knowledge graphs with text, leading to improved performance on NLP tasks that require world knowledge and reasoning.
-
+[LLM Visualization](https://bbycroft.net/llm)
 
 --
 
 ## Real World Examples
 
---
 
 Large language models (LLMs) can also be categorized based on their availability as either open source, where the model architecture and weights are publicly accessible, or closed source, where the model details are proprietary and access is restricted.
 
@@ -84,14 +75,10 @@ Large language models (LLMs) can also be categorized based on their availability
 	- Google's BERT models
 	- ...
 
---
-
 - Open source
 	- [OpenAI's GPT-2](https://github.com/openai/gpt-2)
 	- [Hugging Face’s Transformers](https://huggingface.co/) (repository of open source models)
 	- ...
-
---
 
 - Mixed open/closed source
 	- [Meta's LLaMA](https://github.com/Meta-Llama/llama)
@@ -99,13 +86,18 @@ Large language models (LLMs) can also be categorized based on their availability
 	
 --
 
-- [Navigating the World of Large Language Models](https://www.bentoml.com/blog/navigating-the-world-of-large-language-models)
-
---
+<!-- .slide: class="align-center" -->
 
 ## LLaMA 2
 
-![[10000000_662098952474184_2584067087619170692_n.pdf]]
+
+<div class="pdf"><!-- { "pdf": "assets/1706.03762.pdf" } --></div>
+
+--
+
+<!-- .slide: class="align-center" data-background-image="assets/matrix.gif" -->
+
+## LLaMA 2 - Hands On!
 
 --
 
@@ -114,3 +106,4 @@ Large language models (LLMs) can also be categorized based on their availability
 
 - [LLM Visualization](https://bbycroft.net/llm)
 - ["Spreadsheets are all you need" Project](https://spreadsheets-are-all-you-need.ai)
+- [Navigating the World of Large Language Models](https://www.bentoml.com/blog/navigating-the-world-of-large-language-models)

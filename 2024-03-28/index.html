@@ -4,17 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Large Language Models: The Digital Grimoires of the 21st Century</title>
-    <link rel="stylesheet" href="/dist/reset.css">
-    <link rel="stylesheet" href="/dist/reveal.css">
-    <link rel="stylesheet" href="/dist/theme/cloudogu.css">
+    <link rel="stylesheet" href="../dist/reset.css">
+    <link rel="stylesheet" href="../dist/reveal.css">
+    <link rel="stylesheet" href="../dist/theme/cloudogu.css">
     <!-- Theme used for syntax highlighted code -->
-    <link rel="stylesheet" href="/plugin/highlight/monokai.css">
+    <link rel="stylesheet" href="../plugin/highlight/monokai.css">
     <!-- Font awesome is required for the chalkboard plugin -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/plugin/chalkboard/style.css">
-    <link rel="stylesheet" href="/plugin/customcontrols/style.css">
-    <link rel="stylesheet" href="/plugin/timeline/timeline.css">
+    <link rel="stylesheet" href="../plugin/chalkboard/style.css">
+    <link rel="stylesheet" href="../plugin/customcontrols/style.css">
+    <link rel="stylesheet" href="../plugin/timeline/timeline.css">
   </head>
   <body>
     <div class="reveal">
@@ -25,18 +25,18 @@
         <section data-markdown="./Chapter 3 - Large Language Models.md" data-separator="^(\r)?\n(\r)?---(\r)?\n(\r)?$" data-separator-vertical="^(\r)?\n(\r)?--(\r)?\n(\r)?$"></section>
       </div>
     </div>
-    <script src="/dist/reveal.js"></script>
-    <script src="/plugin/notes/notes.js"></script>
-    <script src="/plugin/markdown/markdown.js"></script>
-    <script src="/plugin/highlight/highlight.js"></script>
-    <script src="/plugin/math/math.js"></script>
-    <script src="/plugin/zoom/zoom.js"></script>
-    <script src="/plugin/search/search.js"></script>
-    <script src="/plugin/chalkboard/plugin.js"></script>
-    <script src="/plugin/customcontrols/plugin.js"></script>
-    <script src="/plugin/anything/plugin.js"></script>
-    <script src="/plugin/timeline/timeline.js"></script>
-    <script src="/libs/pdfjs/build/pdf.mjs" type="module"></script>
+    <script src="../dist/reveal.js"></script>
+    <script src="../plugin/notes/notes.js"></script>
+    <script src="../plugin/markdown/markdown.js"></script>
+    <script src="../plugin/highlight/highlight.js"></script>
+    <script src="../plugin/math/math.js"></script>
+    <script src="../plugin/zoom/zoom.js"></script>
+    <script src="../plugin/search/search.js"></script>
+    <script src="../plugin/chalkboard/plugin.js"></script>
+    <script src="../plugin/customcontrols/plugin.js"></script>
+    <script src="../plugin/anything/plugin.js"></script>
+    <script src="../plugin/timeline/timeline.js"></script>
+    <script src="../libs/pdfjs/build/pdf.mjs" type="module"></script>
     <script>
       // More info about initialization & config:
       // - https://revealjs.com/initialization/
@@ -90,7 +90,7 @@
             // <iframe src="/libs/pdfjs/web/viewer.html?file=lix-236-433.pdf" width="100%" height="500"></iframe>
             var url = options.pdf;
             var pdf = document.createElement('iframe');
-            pdf.src = '/libs/pdfjs/web/viewer.html?file=' + window.location.origin + '/' + '2024-03-28' + '/' + options.pdf;
+            pdf.src = '../libs/pdfjs/web/viewer.html?file=' + window.location.origin + '/' + '2024-03-28' + '/' + options.pdf;
             pdf.width = '100%';
             pdf.height = '500';
             container.appendChild(pdf);
@@ -104,7 +104,7 @@
           {
             window.timeline = new TL.Timeline(container, options.url,
             {
-              font: '/plugin/timeline/font/roboto.css',
+              font: '../plugin/timeline/font/roboto.css',
             });
           })
         }, ],

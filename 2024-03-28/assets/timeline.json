@@ -1,0 +1,56 @@
+{
+    "title": {
+      "text": {
+        "headline": "Evolution of Large Language Models",
+        "text": "<p>An overview of significant milestones in the development of large language models.</p>"
+      }
+    },
+    "events": [
+      {
+        "start_date": {
+          "year": "2018"
+        },
+        "text": {
+          "headline": "BERT",
+          "text": "Developed by Google, revolutionizing context understanding in language."
+        }
+      },
+      {
+        "start_date": {
+          "year": "2019"
+        },
+        "text": {
+          "headline": "GPT-2",
+          "text": "OpenAI's model showcasing transformers' ability to generate coherent text."
+        }
+      },
+      {
+        "start_date": {
+          "year": "2020"
+        },
+        "text": {
+          "headline": "GPT-3",
+          "text": "OpenAI improved upon GPT-2, pushing the boundaries with 175 billion parameters."
+        }
+      },
+      {
+        "start_date": {
+          "year": "2021"
+        },
+        "text": {
+          "headline": "Jurassic-1",
+          "text": "Released by AI21 Labs, marking another significant advancement."
+        }
+      },
+      {
+        "start_date": {
+          "year": "2022"
+        },
+        "text": {
+          "headline": "GPT-4",
+          "text": "OpenAI's further advancement, aiming at more accurate human-like text generation."
+        }
+      }
+    ]
+  }
+  

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>reveal.js</title>
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/cloudogu.css">
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section style="text-align: center;" data-background-image="assets/bg.svg">
+          <h2 class="title" style="margin: 0 0 0 0; line-height: 1">
+            <span class="title-accent">//</span> AI talks
+          </h2>
+          <span style="margin: 0 0 0 0;font-size: 70%">
+            <a href='https://www.linkedin.com/in/flaviocordari' target="_blank"><i class='fab fa-linkedin'></i> Flavio Cordari</a>
+            <div>
+              <ul style="font-size: 90%">
+                <li>2024-03-28: <a href="2024-03-28/">Large Language Models: The Digital Grimoires of the 21st Century</a> </li>
+              </ul>
+            </div>
+            <!-- <div style="margin-top: 15px">Progetti associati:<br /> <i class='fab fa-github'></i> <a
+								href=""> TODO </a> | <i
+								class='fab fa-github'></i> <a href="">
+								TODO</a> | <i class='fab fa-github'></i>
+							<a href=""> TODO</a>
+							</ul>
+						</div> -->
+          </span>
+        </section>
+      </div>
+    </div>
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize(
+      {
+        hash: true,
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+      });
+    </script>
+  </body>
+</html>

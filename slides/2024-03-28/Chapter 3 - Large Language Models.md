@@ -2,6 +2,12 @@
 
 --
 
+## (Wikipedia) Definition
+
+> A **large language model** (LLM) is a language model notable for its *ability to achieve general-purpose language generation and other natural language processing tasks* such as classification. LLMs acquire these abilities by learning statistical relationships from text documents during a computationally intensive self-supervised and semi-supervised training process. LLMs can be used for text generation, a form of generative AI, by taking an input text and repeatedly predicting the next token or word.
+
+--
+
 ## What is a Language Model?
 
 A language model is a statistical and computational tool that enables a computer to understand, interpret, and generate human language based on the likelihood of occurrence of words and sequences of words. 
@@ -33,15 +39,8 @@ A large language model is a type of artificial intelligence algorithm designed t
 
 --
 
-## Modern Large Language Models Architectures
 
---
-
-## Transformer-Based Models
-
-- **BERT (Bidirectional Encoder Representations from Transformers)**
-- **GPT (Generative Pre-trained Transformer) Series**
-- **T5 (Text-to-Text Transfer Transformer)**
+<div class="timeline" style="width: 100%; height: 500px"> <!-- {"url": "assets/timeline.json"} --> </div>
 
 --
 
@@ -52,11 +51,7 @@ A large language model is a type of artificial intelligence algorithm designed t
 <div class="pdf"><!-- { "pdf": "assets/1706.03762.pdf" } --></div>
 
 Notes: 
-Developed by Google, BERT was one of the first transformer-based models to use bidirectional training to understand the context of words in a sentence. It significantly improved the performance of NLP tasks such as question answering and language inference.
-
-OpenAI's GPT series, including GPT-3 and its successors, are known for their generative capabilities, enabling them to produce human-like text. These models are pre-trained on diverse internet text and fine-tuned for specific tasks, showcasing remarkable language understanding and creativity.
-
-Developed by Google, T5 approaches NLP tasks by converting all text-based language problems into a unified text-to-text format, allowing it to perform a wide range of tasks from translation to summarization with the same model architecture.
+TODO
 
 --
 

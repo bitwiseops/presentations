@@ -41,8 +41,8 @@ A **Large Language Model** (LLM) is a *type of artificial intelligence (AI) algo
 ## Classification
 
 <div class="r-stack">
-    <img class="fragment fade-in-then-out" src="assets/venn-0.png" width="60%">
-    <img class="fragment fade-in-then-out" src="assets/venn-1.png" width="60%">
+    <img class="fragment fade-out" src="assets/venn-0.png" width="60%" data-fragment-index=0>
+    <img class="fragment fade-in-then-out" src="assets/venn-1.png" width="60%" data-fragment-index=0>
     <img class="fragment fade-in-then-out" src="assets/venn-2.png" width="60%">
     <img class="fragment fade-in-then-out" src="assets/venn-3.png" width="60%">
     <img class="fragment fade-in-then-out" src="assets/venn-10.png" width="60%">
@@ -113,7 +113,7 @@ of current language models**
 
 > An ability is emergent if it is not present in smaller models but is present in larger models.
 
-<small style="float:right; font-size:xx-small">Emergent Abilities of Large Language Models, Transactions on Machine Learning Research (08/2022)</small>
+<small style="float:right; font-size:xx-small"><a href="https://arxiv.org/abs/2206.07682">Emergent Abilities of Large Language Models</a></small>
 
 
 
@@ -122,7 +122,7 @@ of current language models**
 <!-- .slide: class="align-center" -->
 
 <img src="assets/emergent.png">
-<small style="font-size:xx-small">Emergent Abilities of Large Language Models, Transactions on Machine Learning Research (08/2022)</small>
+<small style="float:right; font-size:xx-small"><a href="https://arxiv.org/abs/2206.07682">Emergent Abilities of Large Language Models</a></small>
 
 Notes:
 On most tasks, performance improved predictably and smoothly as the models scaled up — the larger the model, the better it got. But with other tasks, the jump in ability wasn’t smooth. The performance remained near zero for a while, then performance jumped. Other studies found similar leaps in ability. 
@@ -133,7 +133,7 @@ Researchers noted that these behaviors are not only surprising but unpredictable
 
 > Strong claims of emergence have as much to do with the way we choose to measure as they do with what the models are doing.
 
-<small style="float:right; font-size:xx-small">Are Emergent Abilities of Large Language Models a Mirage? arXiv:2304.15004 (05/2023)</small>
+<small style="float:right; font-size:xx-small"><a href="https://arxiv.org/abs/2304.15004">Are Emergent Abilities of Large Language Models a Mirage?</a></small>
 
 Notes: 
 No one is disputing that large enough LLMs can complete tasks that smaller models can’t, including ones for which they weren’t trained.  LLMs become more effective as they scale up; in fact, the added complexity of larger models should make it possible to get better at more difficult and diverse problems. Whether this improvement looks smooth and predictable or jagged and sharp **results from the choice of metric — or even a paucity of test examples — rather than the model’s inner workings**.
@@ -163,7 +163,7 @@ So instead, Koyejo and his collaborators tested the same task using a metric tha
 
 <img src="assets/conscious_ai.png" width="50%">
 
-<small style="font-size:xx-small;">  [New York Times Article](https://www.nytimes.com/2022/07/23/technology/google-engineer-artificial-intelligence.html) </small> 
+<small style="font-size:xx-small;">  [Google Fires Engineer Who Claims Its A.I. Is Conscious](https://www.nytimes.com/2022/07/23/technology/google-engineer-artificial-intelligence.html) </small> 
 
 Notes:
 There are reported examples of individuals who believe that ChatGPT is conscious. As reported by The New York Times on 23 July 2022 (accessed on 23 July 2022), Google fired engineer Blake Lemoine for claiming that Google’s Language Model for Dialogue Applications (LaMDA) was sentient, (i.e., experiencing sensations, perceptions, and other subjective experiences). 
@@ -194,7 +194,7 @@ According to Kahneman’s description, **being on the “System 1” level means
 ## Compression is Comprehension
 
 
-> A model is thus better if it can explain more with less
+> A model is thus better if it can explain **more** with *less*
 
 <small style="font-size:xx-small; float:right">  [Compression is Comprehension: The Unreasonable Effectiveness of Digital Computation in the Natural World](https://arxiv.org/pdf/1904.10258v3.pdf) </small> 
 

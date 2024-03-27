@@ -19,6 +19,7 @@
 
 		<link rel="stylesheet" href="/plugin/chalkboard/style.css">
 		<link rel="stylesheet" href="/plugin/customcontrols/style.css">
+		<link rel="stylesheet" href="/plugin/timeline/timeline.css">
 
 
 	</head>
@@ -46,6 +47,7 @@
 		<script src="/plugin/chalkboard/plugin.js"></script>
 		<script src="/plugin/customcontrols/plugin.js"></script>
 		<script src="/plugin/anything/plugin.js"></script>
+		<script src="/plugin/timeline/timeline.js"></script>
 		<script src="/libs/pdfjs/build/pdf.mjs" type="module"></script>
 		
 		<% if (locals.scripts) { %>
@@ -107,28 +109,17 @@
 							}
 							)},
 							{
-							className: "pdf-old",
+							className: "timeline",
 							defaults: {},
 							initialize: (function(container, options){
-								var url = options.pdf;
-								// Loaded via <script> tag, create shortcut to access PDF.js exports.
-								var { pdfjsLib } = globalThis;
-								// The workerSrc property shall be specified.
-								pdfjsLib.GlobalWorkerOptions.workerSrc = '/libs/pdfjs/build/pdf.worker.mjs';
-								// Asynchronous download of PDF
-								var loadingTask = pdfjsLib.getDocument(url);
-								loadingTask.promise
-									.then((pdf) => {
-										for (let i = 1; i <= pdf.numPages; i++) {
-											canvasId = appendCanvasForPDFPage(container);
-											renderPDFPage(pdf, i, canvasId);
-										}									
-									}, function (reason) {
-									// PDF loading error
-									console.error(reason);
-									});
-								}
-								)
+								window.timeline = new TL.Timeline(container,
+									options.url,
+									{
+                						font: '/plugin/timeline/font/roboto.css',
+            						});
+							})
+								
+								
 							},
 							],
 				});

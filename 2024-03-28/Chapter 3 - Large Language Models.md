@@ -2,33 +2,7 @@
 
 --
 
-## (Wikipedia) Definition
-
-> A **large language model** (LLM) is a language model notable for its *ability to achieve general-purpose language generation and other natural language processing tasks* such as classification. LLMs acquire these abilities by learning statistical relationships from text documents during a computationally intensive self-supervised and semi-supervised training process. LLMs can be used for text generation, a form of generative AI, by taking an input text and repeatedly predicting the next token or word.
-
---
-
-## What is a Language Model?
-
-A language model is a statistical and computational tool that enables a computer to understand, interpret, and generate human language based on the likelihood of occurrence of words and sequences of words. 
-
---
-
-**Statistical Language Models:** These earlier models rely on the statistical properties of language, using the probabilities of sequences of words (n-grams) to predict the likelihood of the next word in a sequence.
-
-[Bigrams Example](https://colab.research.google.com/drive/1ikJuNYOOliuy8tTl9csKuWDlVdHJhVQg?usp=sharing)
-
---
-
-**Neural Language Models:** These models use **neural networks** to predict the likelihood of a sequence of words, learning and representing language in high-dimensional spaces. 
-
-[Simplified NLM Example](https://colab.research.google.com/drive/1ON9CO6LUtX1mbDmYIq3Pt5mSqoxzGxPr?usp=sharing)
-
---
-
 ## What is a *Large* Language Model?
-
---
 
 A Large Language Model is a Neural Language Model
 - which is trained on very big datasets 
@@ -39,7 +13,18 @@ A large language model is a type of artificial intelligence algorithm designed t
 
 --
 
-<div class="timeline" style="width: 100%; height: 500px"> <!-- {"url": "assets/timeline.json"} --> </div>
+## (Wikipedia) Definition
+
+> A **large language model** (LLM) is a language model notable for its *ability to achieve general-purpose language generation and other natural language processing tasks* such as classification. LLMs acquire these abilities by learning statistical relationships from text documents during a computationally intensive self-supervised and semi-supervised training process. LLMs can be used for text generation, a form of generative AI, by taking an input text and repeatedly predicting the next token or word.
+
+
+--
+
+## Evolution of LLMs
+
+<iframe width="100%" height="500" src="https://informationisbeautiful.net/visualizations/the-rise-of-generative-ai-large-language-models-llms-like-chatgpt/"> </iframe>
+
+<small style="font-size:xx-small"> [The Rise and Rise of A.I. Large Language Models (LLMs)](https://informationisbeautiful.net/visualizations/the-rise-of-generative-ai-large-language-models-llms-like-chatgpt/) </small>
 
 --
 
@@ -50,40 +35,43 @@ A large language model is a type of artificial intelligence algorithm designed t
 <div class="pdf"><!-- { "pdf": "assets/1706.03762.pdf" } --></div>
 
 Notes: 
-TODO
+- This work introduced the **Transformer architecture**, which is the foundation upon which GPT and many other subsequent models are built. 
+- Before the Transformer, most NLP models relied on recurrent neural networks (RNNs) or convolutional neural networks (CNNs) to process text. The Transformer model introduced a **novel architecture based entirely on attention mechanisms**, specifically self-attention, allowing the model to **weigh the importance of different words within a sentence regardless of their positional distance from each other**. 
+- The Transformer architecture has made it **feasible to pre-train models** on large corpora of text **and then fine-tune** them for specific tasks.
 
 --
 
 <!-- .slide: class="align-center" -->
 
+## Transformers
 
-## LLM Visualization
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ZXiruGOCn9s?si=WQyUV4YN9HWNffVj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-[LLM Visualization](https://bbycroft.net/llm)
+--
+
+
+
+## Transformers - Details
+
+[LLM Visualization Project](https://bbycroft.net/llm)
 
 --
 
 ## Real World Examples
 
-
-Large language models (LLMs) can also be categorized based on their availability as either open source, where the model architecture and weights are publicly accessible, or closed source, where the model details are proprietary and access is restricted.
-
---
-
 - Closed source
 	- OpenAI's GPT-3 / GPT-4
 	- Google's BERT models
 	- ...
-
 - Open source
 	- [OpenAI's GPT-2](https://github.com/openai/gpt-2)
 	- [Hugging Face’s Transformers](https://huggingface.co/) (repository of open source models)
 	- ...
-
 - Mixed open/closed source
 	- [Meta's LLaMA](https://github.com/Meta-Llama/llama)
 		- the company has provided some level of access to the research community but still maintains control over the distribution and usage of the model.
-	
+<!-- .element: style="font-size:large" -->
+
 --
 
 <!-- .slide: class="align-center" -->
@@ -91,7 +79,7 @@ Large language models (LLMs) can also be categorized based on their availability
 ## LLaMA 2
 
 
-<div class="pdf"><!-- { "pdf": "assets/1706.03762.pdf" } --></div>
+<div class="pdf"><!-- { "pdf": "assets/llama2.pdf" } --></div>
 
 --
 
@@ -99,11 +87,3 @@ Large language models (LLMs) can also be categorized based on their availability
 
 ## LLaMA 2 - Hands On!
 
---
-
-
-## Extras
-
-- [LLM Visualization](https://bbycroft.net/llm)
-- ["Spreadsheets are all you need" Project](https://spreadsheets-are-all-you-need.ai)
-- [Navigating the World of Large Language Models](https://www.bentoml.com/blog/navigating-the-world-of-large-language-models)

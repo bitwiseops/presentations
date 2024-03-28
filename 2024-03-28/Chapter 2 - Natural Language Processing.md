@@ -35,17 +35,6 @@ The dialogue above is from ELIZA, an **early natural language processing system*
 
 --
 
-ELIZA works by having a series or **cascade of regular expression substitutions** each of which matches and changes some part of the input line.
-
-```text
-s/.* YOU ARE (depressed|sad) .*/I AM SORRY TO HEAR YOU ARE \1/ 
-s/.* YOU ARE (depressed|sad) .*/WHY DO YOU THINK YOU ARE \1/ 
-s/.* all .*/IN WHAT WAY/ 
-s/.* always .*/CAN YOU THINK OF A SPECIFIC EXAMPLE/
-```
-
---
-
 <!-- .slide: class="align-center" -->
 
 ## Regular Expressions
@@ -60,12 +49,19 @@ Regular expressions are particularly useful for **searching in texts**, when we 
 
 --
 
-<!-- .slide: class="align-center" -->
+## Rule-based Chatbots
 
-## A Rule-based chatbot
+Rule-based Chatbots like ELIZA works by having a series or **cascade of regular expression substitutions** each of which matches and changes some part of the input line.
 
+```text
+s/.* YOU ARE (depressed|sad) .*/I AM SORRY TO HEAR YOU ARE \1/ 
+s/.* YOU ARE (depressed|sad) .*/WHY DO YOU THINK YOU ARE \1/ 
+s/.* all .*/IN WHAT WAY/ 
+s/.* always .*/CAN YOU THINK OF A SPECIFIC EXAMPLE/
+```
 
-[Example](https://colab.research.google.com/drive/1yph2YtXs-6a08gwf4MymHBVlPEebva_y?usp=sharing)
+<small style="font-size:xx-small"> [Rule Based Chatbot Example](https://colab.research.google.com/drive/1yph2YtXs-6a08gwf4MymHBVlPEebva_y?usp=sharing) </small>
+
 
 --
 
@@ -92,6 +88,13 @@ Regular expressions are particularly useful for **searching in texts**, when we 
    </li>
 </ol>
 
+Notes:
+The Natural Language Processing (NLP) pipeline refers to a **series of systematically arranged processes or steps** that are **followed to perform tasks involving the understanding, interpretation, and generation of human language** by computers. An NLP pipeline translates raw text into a form that machines can understand and analyze, facilitating various applications such as sentiment analysis, language translation, and question-answering systems.
+1. Text Acquisition : Gathering text data, which could come from various sources like websites, books, social media, etc.
+2. Pre-processing: Cleaning and normalizing the text. This includes tasks like removing unnecessary characters, correcting typos, converting text to lowercase, etc.
+3. Feature Extraction: Converting tokens to numerical representations through embeddings, where words with similar meanings are mapped to points close to each other in a geometrical space. This facilitates the machine's understanding of semantic similarities between words.
+4. Modelling: Using the processed data to train machine learning or deep learning models for specific tasks (e.g., classification, regression). After training, the model is evaluated to determine its accuracy, precision, recall, and other metrics.
+
 --
 
 <!-- .slide: class="align-center" -->
@@ -113,57 +116,89 @@ Notes:
 
 --
 
-<!-- .slide: class="align-center" -->
 
-# Feature Extraction Techniques
+# Feature Extraction 
 
-```text
-Review 1: This movie is very scary and long
-Review 2: This movie is not scary and is slow
-Review 3: This movie is spooky and good
-```
-
-<img src="assets/TF_IDF-matrix.webp" >
-
-<small style="font-size:xx-small"> [Quick Introduction to Bag-of-Words (BoW) and TF-IDF for Creating Features from Text](https://www.analyticsvidhya.com/blog/2020/02/quick-introduction-bag-of-words-bow-tf-idf/) </small>
+- **Bag of Words (BoW)**: Represents text as an unordered collection of words and associates a frequencies. 
+- **Term Frequency-Inverse Document Frequency (TF-IDF)**: Reflects the importance of a word to a document in a collection.
 
 Notes:
-- **Bag of Words (BoW)**: Represents text as an unordered collection of words. (first three columns)
-- **Term Frequency-Inverse Document Frequency (TF-IDF)**: Reflects the importance of a word to a document in a collection. (other columns)
-- **Word Embeddings**: Dense representations of words in a continuous vector space (e.g., Word2Vec, GloVe).
+- While both Bag-of-Words and TF-IDF have been popular in their own regard, there still remained **a void where understanding the context of words** was concerned. Detecting the similarity between the words ‘spooky’ and ‘scary’, or translating our given documents into another language, requires a lot more information on the documents.
 
 --
 
-## Word Embeddings (1)
+<!-- .slide: class="align-center" -->
+
+## Feature Extraction - Word Embeddings
+
+<p class="fragment fade-out" data-fragment-index=0 >
+   Training Data: "Troll 2 is great!" and "Gymkata is great!"
+</p>
+<div class="r-stack">
+    <img class="fragment fade-out" src="assets/word-emb0.png"  data-fragment-index=0>
+    <img class="fragment fade-in-then-out" src="assets/word-emb1.png" data-fragment-index=0 >
+    <img class="fragment fade-in-then-out" src="assets/word-emb3.png"  >
+    <img class="fragment fade-in-then-out" src="assets/word-emb2.png"  >
+</div>
+
+<small style="font-size:xx-small"> [Word Embedding and Word2Vec, Clearly Explained!!!](https://www.youtube.com/watch?v=viZrOnJclY0) </small>
+
 
 
 Notes:
 - Word embeddings are a type of word representation that allows words to be represented as vectors in a continuous vector space.
-- Unlike one-hot encoding, embeddings **capture semantic meaning and relationships between words**.
+- Unlike BoW and YTF-IDF, embeddings **capture semantic meaning and relationships between words**.
 - Improve performance of NLP models.
 - Reduce dimensionality compared to sparse representations.
+- A **simple neural network** can automate the assignment of numbers to words, taking into account their context and usage. This network, through a process involving weights and activation functions, **learns to predict the next word in a sentence**. **The weights, adjusted through backpropagation, become the embeddings** that capture semantic relationships between words.
 
 --
 
-## Word Embeddings (2)
+<!-- .slide: class="align-center" -->
+
+
+## Word Embeddings - Word2Vec
+
+<p class="fragment fade-out" data-fragment-index=0 >
+   Training Data: Wikipedia, Books, ...
+</p>
+<div class="r-stack">
+    <img class="fragment fade-out" src="assets/word-emb4.png" data-fragment-index=0>
+    <img class="fragment fade-in-then-out" src="assets/word-emb5.png" width="70%" data-fragment-index=0>
+    <img class="fragment fade-in-then-out" src="assets/word-emb6.png" width="70%" >
+</div>
+
+<small style="font-size:xx-small"> [Word Embedding and Word2Vec, Clearly Explained!!!](https://www.youtube.com/watch?v=viZrOnJclY0) </small>
+<small style="font-size:xx-small"> [Word2Vec - Skipgram and CBOW](https://www.youtube.com/watch?app=desktop&v=UqRCEmrv1gQ) </small>
 
 
 Notes:
-- Word embeddings are learned from text data.
-- The idea is to place words that have similar meanings close together in the vector space.
-- Can be trained using models like Word2Vec, GloVe, or FastText.
-- Training involves adjusting the vector representations based on word contexts.
+- Is a popular tool that utilizes neural networks to create word embeddings. It employs two main strategies to enrich the context in which words are understood: Continuous Bag-of-Words (CBOW) and Skip-Gram. **CBOW predicts a word based on its context**, while **Skip-Gram predicts the context from a word**.
+- Word2Vec can use a large number of activation functions (often 100 or more) to create detailed embeddings for each word, trained on extensive datasets like the entirety of Wikipedia. This approach results in a vast vocabulary and a high number of weights to optimize, making training resource-intensive.
+
 
 --
 
-## Word2Vec
+## What is a Language Model?
+
+> A language model is a *statistical and computational algorithm* that enables a computer to understand, interpret, and generate human language based on the likelihood of occurrence of words and sequences of words. 
+
+--
+
+## Statistical Language Models
+
+These earlier models rely on the **statistical properties** of language, using the probabilities of sequences of words (n-grams) to predict the likelihood of the next word in a sequence.
+
+<small style="font-size:xx-small"> [Bigrams Example](https://colab.research.google.com/drive/1ikJuNYOOliuy8tTl9csKuWDlVdHJhVQg?usp=sharing) </small>
 
 
-Notes:
-- Developed by a team of researchers at Google.
-- Utilizes two architectures: Continuous Bag of Words (CBOW) and Skip-Gram.
-- **CBOW**: Predicts a word based on context.
-- **Skip-Gram**: Predicts context words from a target word.
-- Skip-Gram tends to perform well on smaller datasets and with rare words.
+--
+
+
+## Neural Language Models
+
+These models use **neural networks** to predict the likelihood of a sequence of words, learning and representing language in high-dimensional spaces. 
+
+<small style="font-size:xx-small"> [NLM Example](https://colab.research.google.com/drive/1ON9CO6LUtX1mbDmYIq3Pt5mSqoxzGxPr?usp=sharing) </small>
 
 

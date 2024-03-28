@@ -4,7 +4,9 @@
 
 ## Who am I?
 
+<!-- .slide: class="align-center" -->
 
+<div class="pdf"><!-- { "pdf": "assets/CV_Flavio.pdf" } --></div>
 
 --
 
@@ -27,13 +29,14 @@
 
 # Introduction
 
+
 --
 
 
 ## Definition
 
 
-A **Large Language Model** (LLM) is a *type of artificial intelligence (AI) algorithm* that uses deep learning (DL) and natural language processing (NLP) techniques over massively large data sets to understand, summarize, generate and predict new content.
+A **Large Language Model** (LLM) is a *type of artificial intelligence (AI) algorithm* that uses deep learning (DL) and natural language processing (NLP) techniques over massively large data sets to understand, summarize, generate and predict new textual content.
 
 --
 
@@ -218,3 +221,4 @@ In the context of cognitive science, our brains understand and learn about the w
 Notes:
 The analogy here is that just as grimoires were the repositories of arcane knowledge and power in their time, LLMs are the contemporary digital equivalents, holding vast amounts of human knowledge. However, instead of spells and magical rites, LLMs contain the collective textual data of humanity, capable of generating insights, answers, and even creating new content based on this data.
 
+--

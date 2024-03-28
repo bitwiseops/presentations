@@ -112,29 +112,26 @@ Notes:
 
 Notes:
 
+--
+
+
+## Dense / Fully Connected Neural Networks
+
+> A dense neural network, often referred to as a fully connected network, is a type of artificial neural network where **each neuron in one layer is connected to every neuron in the next layer**. These connections allow the network to *learn complex patterns and relationships from the input* data through a process of weighted inputs, biases, and activation functions.
+
+<small style="font-size:xx-small"> [Dense NN Example](https://colab.research.google.com/drive/1-0RsBldZ0KlCeP6O4BeuPbB4Zi6tZn73?usp=sharing) </small>
+
 
 
 --
-
-<!-- .slide: class="align-center" -->
-
-## Handwritten Recognition Neural Network
-
-[Example](https://colab.research.google.com/drive/1-0RsBldZ0KlCeP6O4BeuPbB4Zi6tZn73?usp=sharing) 
-
---
-
-<!-- .slide: class="align-center" -->
-
 
 ## Convolutional Neural Networks 
 
-<img src="assets/cnn.png" width="70%">
-
-<small style="font-size:xx-small"> [Introduction to Convolutional Neural Networks (CNN)](https://www.analyticsvidhya.com/blog/2021/05/convolutional-neural-networks-cnn/) </small>
+> A Convolutional Neural Network (CNN) is a type of artificial neural network designed to **process data with a grid-like topology**, such as images. CNNs are particularly powerful for tasks that involve spatial data, like image and video recognition, image classification, and also applications in areas beyond vision, such as audio processing and natural language processing.
 
 
-[CNN Explainer](https://poloclub.github.io/cnn-explainer/) 
+<small style="font-size:xx-small"> [CNN Explainer](https://poloclub.github.io/cnn-explainer/) </small>
+
 
 Notes:
 - Specialized kind of neural network for processing data with a grid-like topology

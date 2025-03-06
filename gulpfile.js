@@ -25,6 +25,7 @@ const autoprefixer = require('gulp-autoprefixer')
 const ejs = require('gulp-ejs');
 const rename = require('gulp-rename');
 const prettify = require('gulp-prettify');
+const { done } = require('qunit');
 
 const root = yargs.argv.root || '.'
 const port = yargs.argv.port || 8000
@@ -75,6 +76,12 @@ babelConfigESM.presets[0][1].targets = {
 };
 
 let cache = {};
+
+gulp.task('create-slides', () => {
+    // create slides.html from all md files in each slides folder
+    
+
+})
 
 // Creates a bundle with broad browser support, exposed
 // as UMD
@@ -345,7 +352,7 @@ function processSlides(done) {
         const templatePath = path.join(slidesDir, 'index-template.html');
         const assetsPath = path.join(slidesDir, folder, 'assets');
         const folderPath = path.join(slidesDir, folder);
-        
+
         const configData = getYamlData(configPath);
         configData.folder = folder;
 
@@ -357,7 +364,7 @@ function processSlides(done) {
             .pipe(prettify({
                 indent_size: 2, // Set options according to your project's coding standards
                 wrap_attributes: 'auto' // Example option: wraps attributes to new lines
-              }))
+            }))
             .pipe(rename('index.html'))
             .pipe(gulp.dest(path.join(OUT_DIR, folder)));
 
@@ -365,7 +372,7 @@ function processSlides(done) {
         // gulp.src(slidePath)
         //     .pipe(rename('slides.md'))
         //     .pipe(gulp.dest(path.join(OUT_DIR, folder)));
-        
+
 
         fs.readdirSync(folderPath).filter(function (file) {
             return fs.statSync(path.join(folderPath, file)).isFile() && file.endsWith('.md');
@@ -374,9 +381,9 @@ function processSlides(done) {
                 .pipe(rename(file))
                 .pipe(gulp.dest(path.join(OUT_DIR, folder)));
         });
-        
+
         // Copy assets as is
-        if (fs.existsSync(assetsPath) && fs.readdirSync(assetsPath).length > 0){
+        if (fs.existsSync(assetsPath) && fs.readdirSync(assetsPath).length > 0) {
             fs.readdirSync(assetsPath).filter(function (file) {
                 return fs.statSync(path.join(assetsPath, file)).isFile();
             }).forEach(function (file) {
@@ -395,7 +402,7 @@ function processSlides(done) {
 function processRoot(done) {
     const templatePath = './index-template.html';
     const configData = getYamlData('./config.yml');
-    
+
     configData.slides = [];
     const slidesDir = './slides/';
     fs.readdirSync(slidesDir).filter(function (folder) {
@@ -414,11 +421,11 @@ function processRoot(done) {
         .pipe(prettify({
             indent_size: 2, // Set options according to your project's coding standards
             wrap_attributes: 'auto' // Example option: wraps attributes to new lines
-          }))
+        }))
         .pipe(rename('index.html'))
         .pipe(gulp.dest(`./gh-pages/`));
 
-        done();
+    done();
 }
 
 // Gulp task
@@ -468,4 +475,85 @@ gulp.task('serve_gh_pages', () => {
 
     gulp.watch(['slides/**/*'], gulp.series(gulp.parallel('create_slides', 'create_root'), 'copy_dependencies', 'reload'))
 
+});
+
+// Task to process text and extract images
+gulp.task("extract-text-images", function (done) {
+
+    const argv = yargs
+    .option("input", {
+        alias: "i",
+        describe: "Path to the input text file",
+        type: "string",
+        demandOption: true,
+    })
+    .option("output", {
+        alias: "o",
+        describe: "Path to the output text file",
+        type: "string",
+        demandOption: true,
+    })
+    .help()
+    .alias("help", "h")
+    .argv;
+
+    try {
+        const inputFile = argv.input;
+        const outputFile = path.join(argv.output, 'extracted.txt');
+
+        // Read the input file synchronously
+        const text = fs.readFileSync(inputFile, "utf8");
+
+        // Regex patterns
+        const paragraphWithImagesRegex = /([\s\S]+?)(?=\n!|\n\n|$)/g;
+        const imageRegex = /\!\[\[Pasted image (\d+).png\]\]/g;
+
+        let output = [];
+        let imageCount = 1;
+
+        // Process each paragraph
+        const matches = text.match(paragraphWithImagesRegex);
+        if (matches) {
+            matches.forEach((block) => {
+                block = block.trim();
+                if (!block) return;
+
+                let paragraphText = block.replace(imageRegex, "").trim(); // Remove image references from text
+
+                if (paragraphText) {
+                    output.push(paragraphText);
+                }
+
+                // Extract and process images within the paragraph
+                let imageMatches = [...block.matchAll(imageRegex)];
+                imageMatches.forEach((match, i, matches) => {
+                    // copy image to assets folder
+                    let imageSource = `/mnt/d/Vaults/notes/_attachments/Pasted image ${match[1]}.png`;
+                    let imageDestination = `${argv.output}/assets/${imageCount}_${match[1]}.png`;
+                    fs.copyFileSync(imageSource, imageDestination);
+
+                    let timestamp = match[1];
+                    output.push(`<img src="assets/${imageCount}_${timestamp}.png">`);
+                    imageCount++;
+                    // Add a separator line (`--`) after last image in the paragraph
+                    if (i === matches.length - 1) {
+                        output.push("--");
+                    }
+                });
+
+            });
+        }
+
+        // Remove the last separator to avoid trailing `--`
+        if (output[output.length - 1] === "--") {
+            output.pop();
+        }
+
+        // Write output file synchronously
+        fs.writeFileSync(outputFile, output.join("\n"), "utf8");
+        console.log(`✔ Extraction complete. Output saved to: ${outputFile}`);
+        done();
+    } catch (error) {
+        console.error("❌ Error processing file:", error);
+    }
 });

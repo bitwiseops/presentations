@@ -10,22 +10,16 @@
 
 --
 
-## Workshop's Agenda
-
-![](assets/timeline_ai_workshops.png)
-
---
-
 ## Today's Agenda
 
 - Introduction <!-- .element: class="fragment fade-in-then-semi-out" -->
-- Deep Learning  <!-- .element: class="fragment fade-in-then-semi-out" -->
 - Natural Language Processing  <!-- .element: class="fragment fade-in-then-semi-out" -->
+- Deep Learning  <!-- .element: class="fragment fade-in-then-semi-out" -->
 - Large Language Models  <!-- .element: class="fragment fade-in-then-semi-out" -->
-- Future Applications  <!-- .element: class="fragment fade-in-then-semi-out" -->
+- Transformers  <!-- .element: class="fragment fade-in-then-semi-out" -->
 
 
----
+--
 
 # Introduction
 

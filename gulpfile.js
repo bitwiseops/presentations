@@ -79,7 +79,7 @@ let cache = {};
 
 gulp.task('create-slides', () => {
     // create slides.html from all md files in each slides folder
-    
+
 
 })
 
@@ -342,6 +342,29 @@ function getYamlData(file) {
 
 const OUT_DIR = './gh-pages/';
 
+function copyAssetsRecursive(sourceDir, targetDir) {
+    if (!fs.existsSync(sourceDir)) return;
+
+    fs.readdirSync(sourceDir, { withFileTypes: true }).forEach((entry) => {
+        const fullPath = path.join(sourceDir, entry.name);
+        const targetPath = path.join(targetDir, entry.name);
+
+        if (entry.isDirectory()) {
+            // Ensure directory exists in target location
+            if (!fs.existsSync(targetPath)) {
+                fs.mkdirSync(targetPath, { recursive: true });
+            }
+            // Recursively process subdirectories
+            copyAssetsRecursive(fullPath, targetPath);
+        } else {
+            // Process files
+            gulp.src(fullPath)
+                .pipe(rename(entry.name))
+                .pipe(gulp.dest(targetDir));
+        }
+    });
+}
+
 // Process each slide directory
 function processSlides(done) {
     const slidesDir = 'slides/';
@@ -383,15 +406,18 @@ function processSlides(done) {
         });
 
         // Copy assets as is
-        if (fs.existsSync(assetsPath) && fs.readdirSync(assetsPath).length > 0) {
-            fs.readdirSync(assetsPath).filter(function (file) {
-                return fs.statSync(path.join(assetsPath, file)).isFile();
-            }).forEach(function (file) {
-                gulp.src(path.join(assetsPath, file))
-                    .pipe(rename(file))
-                    .pipe(gulp.dest(path.join(OUT_DIR, folder, 'assets')));
-            });
-        }
+        // if (fs.existsSync(assetsPath) && fs.readdirSync(assetsPath).length > 0) {
+        //     fs.readdirSync(assetsPath).filter(function (file) {
+        //         return fs.statSync(path.join(assetsPath, file)).isFile();
+        //     }).forEach(function (file) {
+        //         gulp.src(path.join(assetsPath, file))
+        //             .pipe(rename(file))
+        //             .pipe(gulp.dest(path.join(OUT_DIR, folder, 'assets')));
+        //     });
+        // }
+
+        const targetPath = path.join(OUT_DIR, folder, 'assets');
+        copyAssetsRecursive(assetsPath, targetPath);
 
     });
 
@@ -481,21 +507,26 @@ gulp.task('serve_gh_pages', () => {
 gulp.task("extract-text-images", function (done) {
 
     const argv = yargs
-    .option("input", {
-        alias: "i",
-        describe: "Path to the input text file",
-        type: "string",
-        demandOption: true,
-    })
-    .option("output", {
-        alias: "o",
-        describe: "Path to the output text file",
-        type: "string",
-        demandOption: true,
-    })
-    .help()
-    .alias("help", "h")
-    .argv;
+        .option("input", {
+            alias: "i",
+            describe: "Path to the input text file",
+            type: "string",
+            demandOption: true,
+        })
+        .option("output", {
+            alias: "o",
+            describe: "Path to the output folder",
+            type: "string",
+            demandOption: true,
+        })
+        .option("attachments", {
+            alias: "a",
+            describe: "Path to the source attachments folder to copy images",
+            type: "string",
+        })
+        .help()
+        .alias("help", "h")
+        .argv;
 
     try {
         const inputFile = argv.input;
@@ -518,26 +549,27 @@ gulp.task("extract-text-images", function (done) {
                 block = block.trim();
                 if (!block) return;
 
-                let paragraphText = block.replace(imageRegex, "").trim(); // Remove image references from text
-
-                if (paragraphText) {
-                    output.push(paragraphText);
-                }
-
                 // Extract and process images within the paragraph
                 let imageMatches = [...block.matchAll(imageRegex)];
                 imageMatches.forEach((match, i, matches) => {
                     // copy image to assets folder
-                    let imageSource = `/mnt/d/Vaults/notes/_attachments/Pasted image ${match[1]}.png`;
-                    let imageDestination = `${argv.output}/assets/${imageCount}_${match[1]}.png`;
+                    let imageSource = path.join(argv.attachments, `Pasted image ${match[1]}.png`);
+                    let imageDestination = path.join(argv.output, 'assets', `${imageCount}_${match[1]}.png`);
                     fs.copyFileSync(imageSource, imageDestination);
 
                     let timestamp = match[1];
-                    output.push(`<img src="assets/${imageCount}_${timestamp}.png">`);
+                    output.push('<!-- .slide: class="align-center" -->\n\n');
+                    output.push(`<img src="assets/${imageCount}_${timestamp}.png" style="max-height: 55vh;">\n\n`);
                     imageCount++;
                     // Add a separator line (`--`) after last image in the paragraph
                     if (i === matches.length - 1) {
-                        output.push("--");
+                        let paragraphText = block.replace(imageRegex, "").trim(); // Remove image references from text
+
+                        if (paragraphText) {
+                            output.push("Notes:\n");
+                            output.push(paragraphText + "\n");
+                        }
+                        output.push("\n--\n");
                     }
                 });
 

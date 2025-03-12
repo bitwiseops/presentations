@@ -22,7 +22,7 @@
 - Deep Learning  <!-- .element: class="fragment fade-in-then-semi-out" -->
 - Natural Language Processing  <!-- .element: class="fragment fade-in-then-semi-out" -->
 - Large Language Models  <!-- .element: class="fragment fade-in-then-semi-out" -->
-- Future Applications  <!-- .element: class="fragment fade-in-then-semi-out" -->
+- Extras  <!-- .element: class="fragment fade-in-then-semi-out" -->
 
 
 ---
@@ -93,6 +93,7 @@ The Turing Test was designed to assess a machine’s ability to exhibit intellig
 
 <small style="float:right; font-size:xx-small">[A Turing test of whether AI chatbots are behaviorally similar to humans](https://www.pnas.org/doi/10.1073/pnas.2313925121)</small>
 
+
 --
 
 <!-- .slide: class="align-center" -->
@@ -119,7 +120,6 @@ of current language models**
 <small style="float:right; font-size:xx-small"><a href="https://arxiv.org/abs/2206.07682">Emergent Abilities of Large Language Models</a></small>
 
 
-
 --
 
 <!-- .slide: class="align-center" -->
@@ -128,9 +128,8 @@ of current language models**
 <small style="float:right; font-size:xx-small"><a href="https://arxiv.org/abs/2206.07682">Emergent Abilities of Large Language Models</a></small>
 
 Notes:
-On most tasks, performance improved predictably and smoothly as the models scaled up — the larger the model, the better it got. But with other tasks, the jump in ability wasn’t smooth. The performance remained near zero for a while, then performance jumped. Other studies found similar leaps in ability. 
-
-Researchers noted that these behaviors are not only surprising but unpredictable, and that they should inform the evolving conversations around AI safety, potential and risk. They called the abilities “emergent,” a word that describes collective behaviors that only appear once a system reaches a high level of complexity.
+- On most tasks, performance improved predictably and smoothly as the models scaled up — the larger the model, the better it got. But **with other tasks, the jump in ability wasn’t smooth**. The performance remained near zero for a while, then performance jumped. Other studies found similar leaps in ability. 
+- Researchers noted that **these behaviors are not only surprising but unpredictable**, and that they should inform the **evolving conversations around AI safety, potential and risk**. They called the abilities “emergent,” a word that describes collective behaviors that only appear once a system reaches a high level of complexity.
 
 --
 

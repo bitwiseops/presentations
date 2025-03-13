@@ -163,3 +163,18 @@ Notes:
 <img src="assets/gradient_descent_example.gif" width="70%">
 
 Notes:
+
+--
+
+
+## Why Grimoires? 
+
+<!-- .slide: class="align-center" -->
+
+<img src="assets/spellbook.gif" width="60%">
+
+
+Notes:
+The analogy here is that just as grimoires were the repositories of arcane knowledge and power in their time, LLMs are the contemporary digital equivalents, holding vast amounts of human knowledge. However, instead of spells and magical rites, LLMs contain the collective textual data of humanity, capable of generating insights, answers, and even creating new content based on this data.
+
+--

@@ -46,8 +46,7 @@ Notes:
 
 # Weights and Bias
 
-<!-- .slide: class="align-center" -->
-
+> **Weights** are the coefficients that adjust the influence of input signals, and **bias** is an additional constant that helps shift the activation function, improving learning flexibility.
 
 
 --
@@ -58,12 +57,12 @@ Notes:
 
 A linear function in this context is a weighted sum such that:
 
-$$ z(X, W, b) = \sum_{i=1}^{n}x_i \cdot w_i + b$$
+$$ z(\overline{x}, \overline{w}, b) = \sum_{i=1}^{n}x_i \cdot w_i + b$$
 
 where
 
-- Input vector $X \in \mathbb{R}^n$
-- Weight vector $W \in \mathbb{R}^n$
+- Input vector $\overline{x} \in \mathbb{R}^n$
+- Weight vector $\overline{w} \in \mathbb{R}^n$
 - Bias scalar $b \in \mathbb{R}$
 
 Notes:
@@ -122,9 +121,9 @@ Notes:
 
 <!-- .slide: class="align-center" -->
 
-## Example: Classification task
+## A Classification Task
 
-<video controls muted src="assets/gradient_descent/ezgif-4cd28dabd6739b.mp4">
+<video controls muted autoplay src="assets/gradient_descent/ezgif-4cd28dabd6739b.mp4">
 
 --
 
@@ -132,19 +131,21 @@ Notes:
 
 ## Inference
 
-<video controls muted src="assets/gradient_descent/ezgif-45275bb35b2d97.mp4">
+<video controls muted autoplay src="assets/gradient_descent/ezgif-45275bb35b2d97.mp4">
 
 --
 
 <!-- .slide: class="align-center" -->
 
-## Training
+## Learning
 
-<video controls muted src="assets/gradient_descent/ezgif-46783a986a10e8.mp4">
+<video autoplay loop controls muted src="assets/gradient_descent/ezgif-483a11ff189bd3.mp4">
 
 --
 
-# Gradient Descent
+# Gradient Descent <!-- .element: style="color: black;" -->
+
+<!-- .slide: data-background-image="assets/grad_desc.gif" -->
 
 --
 
@@ -156,41 +157,14 @@ Notes:
 
 --
 
-
 <!-- .slide: class="align-center" -->
 
-## Evaluating the Loss / Cost (1)
+## Evaluating the Loss / Cost
 
-<video controls muted src="assets/gradient_descent/ezgif-4a31475caec044.mp4">
+<video controls muted loop src="assets/gradient_descent/ezgif-4a31475caec044.mp4">
 
 Notes:
 - higher values means high prediction error, and vice versa
-
---
-
-
-<!-- .slide: class="align-center" -->
-
-## Evaluating the Loss / Cost (2)
-
-<video controls muted src="assets/gradient_descent/ezgif-40bf0f4c71edea.mp4">
-
---
-
-
-<!-- .slide: class="align-center" -->
-
-## Weights and Biases (1)
-
-<video controls muted src="assets/gradient_descent/ezgif-4abc0474512930.mp4">
-
---
-
-<!-- .slide: class="align-center" -->
-
-## Weights and Biases (2)
-
-<video autoplay loop controls muted src="assets/gradient_descent/ezgif-483a11ff189bd3.mp4">
 
 --
 
@@ -218,35 +192,129 @@ Notes:
 
 ## Local vs Global Minimum
 
-<video controls muted src="assets/gradient_descent/ezgif-43a57615909948.mp4">
+<video controls muted loop autoplay src="assets/gradient_descent/ezgif-43a57615909948.mp4">
 
 --
 
 
 <!-- .slide: class="align-center" -->
 
-## Gradient Descent (1)
+## Descending Direction
 
-<video controls muted src="assets/gradient_descent/ezgif-4b2cdc6998cee4.mp4">
-
---
-
-
-<!-- .slide: class="align-center" -->
-
-## Gradient Descend (2)
-
-<video controls muted src="assets/gradient_descent/ezgif-4e69cdfe7d6605.mp4">
-
+<video controls muted loop autoplay src="assets/gradient_descent/ezgif-4b2cdc6998cee4.mp4">
 
 --
 
 
 <!-- .slide: class="align-center" -->
 
-## Parameters Update
+## Descending Loop
 
-<video controls muted src="assets/gradient_descent/ezgif-434040be4ae3e3.mp4">
+<video controls muted loop autoplay src="assets/gradient_descent/ezgif-4e69cdfe7d6605.mp4">
+
+--
+
+<!-- .slide: class="align-center" -->
+
+## Estimating the Gradient
+
+<video controls muted loop autoplay src="assets/gradient_descent/ezgif-434040be4ae3e3.mp4">
+
+
+--
+
+# Backpropagation
+
+<!-- .slide: data-background-image="assets/bg-ann.gif" -->
+
+--
+
+## Parameters Variation (1)
+
+<!-- .slide: class="align-center" -->
+
+<video controls loop muted autoplay src="assets/backprop/backpropagation-86-102.mov">
+
+--
+
+## Parameters Variation (2)
+
+<!-- .slide: class="align-center" -->
+
+<video controls loop muted autoplay src="assets/backprop/backpropagation-135-168.mov">
+
+--
+
+## Matching Output and Truth (1)
+
+<!-- .slide: class="align-center" -->
+
+<video controls loop muted src="assets/backprop/backpropagation-236-252.mov">
+
+--
+
+## Matching Output and Truth (2)
+
+<!-- .slide: class="align-center" -->
+
+<video controls loop muted src="assets/backprop/backpropagation-212-222.mov">
+
+--
+
+## Focusing on Single Neuron
+
+<!-- .slide: class="align-center" -->
+
+<video controls muted src="assets/backprop/backpropagation-282-315.mov">
+
+Notes:
+- si puo agire sui pesi, sul bias e sull'attivazione dei neuroni dello strato precedente
+- 
+
+--
+
+<!-- .slide: class="align-center" -->
+
+<video controls loop muted src="assets/backprop/backpropagation-409-421.mov">
+
+--
+
+<!-- .slide: class="align-center" -->
+
+<video controls muted src="assets/backprop/backpropagation-421-445-2.mov">
+
+--
+
+<!-- .slide: class="align-center" -->
+
+<video controls loop muted src="assets/backprop/backpropagation-455-484-2.mov">
+
+--
+
+## Propagation
+
+<!-- .slide: class="align-center" -->
+
+<video controls loop muted src="assets/backprop/backpropagation-513-542.mov">
+
+--
+
+<!-- .slide: class="align-center" -->
+
+<video controls loop muted src="assets/backprop/backpropagation-542-554.mov">
+
+--
+
+## Batching
+
+<!-- .slide: class="align-center" -->
+
+<video controls loop muted src="assets/backprop/backpropagation-593-611.mov">
+
+--
+
+
+
 
 
 

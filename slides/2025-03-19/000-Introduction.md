@@ -152,13 +152,11 @@ So instead, Koyejo and his collaborators tested the same task using a metric tha
 
 --
 
-## What about consciousness?
-
---
+## What about consciousness? (1)
 
 <!-- .slide: class="align-center" -->
 
-<img src="assets/conscious_ai.png" width="50%">
+<img src="assets/conscious_ai.png" width="40%">
 
 <small style="font-size:xx-small;">  [Google Fires Engineer Who Claims Its A.I. Is Conscious](https://www.nytimes.com/2022/07/23/technology/google-engineer-artificial-intelligence.html) </small> 
 
@@ -167,7 +165,7 @@ There are reported examples of individuals who believe that ChatGPT is conscious
 
 --
 
-## LLMs vs Humans
+## What about consciousness? (2)
 
 <!-- .slide: class="align-center" -->
 
@@ -201,18 +199,3 @@ In information theory, compression is about representing information in a way th
 In the context of cognitive science, our brains understand and learn about the world by **compressing sensory inputs and experiences into models, schemas, or concepts that are simpler than the sum total of possible data**. This process allows us to make sense of complex environments and predict future events based on past experiences
 
 **LLMs training involve a process of lossy compression of very large textual datasets but, despite this, can still generate text.**
-
---
-
-
-## Why Grimoires? 
-
-<!-- .slide: class="align-center" -->
-
-<img src="assets/spellbook.gif" width="60%">
-
-
-Notes:
-The analogy here is that just as grimoires were the repositories of arcane knowledge and power in their time, LLMs are the contemporary digital equivalents, holding vast amounts of human knowledge. However, instead of spells and magical rites, LLMs contain the collective textual data of humanity, capable of generating insights, answers, and even creating new content based on this data.
-
---

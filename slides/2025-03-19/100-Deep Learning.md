@@ -363,7 +363,7 @@ We'll denote the cost of that one training example as C0.
 
 --
 
-## 
+## Math Symbology
 
 <!-- .slide: class="align-center" -->
 

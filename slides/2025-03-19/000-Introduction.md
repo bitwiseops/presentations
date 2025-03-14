@@ -1,4 +1,4 @@
-#  Large Language Models: The Digital Grimoires of the 21st Century
+#  Introduction
 
 --
 
@@ -18,14 +18,7 @@
 - Large Language Models  <!-- .element: class="fragment fade-in-then-semi-out" -->
 - Transformers  <!-- .element: class="fragment fade-in-then-semi-out" -->
 
-
 --
-
-# Introduction
-
-
---
-
 
 ## Definition
 

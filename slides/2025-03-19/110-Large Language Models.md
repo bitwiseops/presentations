@@ -1,4 +1,4 @@
-# LLM - Large Language Model
+# Large Language Models
 
 --
 
@@ -74,8 +74,6 @@ but it also starts to make more reasonable predictions on text that it's never
 seen before.
 
 --
-
-## Tuning
 
 <!-- .slide: class="align-center" -->
 

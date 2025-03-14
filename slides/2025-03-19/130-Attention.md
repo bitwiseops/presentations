@@ -572,6 +572,3 @@ Notes:
 The overall idea is that by running many distinct heads in parallel, 
 you're giving the model the capacity to learn many distinct ways that context 
 changes meaning.
-
-
---

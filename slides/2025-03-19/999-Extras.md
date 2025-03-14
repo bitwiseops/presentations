@@ -178,3 +178,37 @@ Notes:
 The analogy here is that just as grimoires were the repositories of arcane knowledge and power in their time, LLMs are the contemporary digital equivalents, holding vast amounts of human knowledge. However, instead of spells and magical rites, LLMs contain the collective textual data of humanity, capable of generating insights, answers, and even creating new content based on this data.
 
 --
+
+## Matching Output and Truth (2)
+
+<!-- .slide: class="align-center" -->
+
+<video controls loop muted src="assets/backprop/backpropagation-212-222.mov">
+
+--
+
+## Propagation
+
+<!-- .slide: class="align-center" -->
+
+<video controls loop muted src="assets/backprop/backpropagation-513-542.mov">
+
+--
+
+<img src="assets/37_20240406110141.png">
+
+--
+
+<img src="assets/38_20250213113238.png">
+
+--
+
+<img src="assets/39_20250213113310.png">
+
+--
+
+<img src="assets/40_20250213113343.png">
+
+--
+
+<img src="assets/41_20250213113442.png" style="max-height: 50vh;" >

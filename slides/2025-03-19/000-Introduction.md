@@ -16,7 +16,9 @@
 - Natural Language Processing  <!-- .element: class="fragment fade-in-then-semi-out" -->
 - Deep Learning  <!-- .element: class="fragment fade-in-then-semi-out" -->
 - Large Language Models  <!-- .element: class="fragment fade-in-then-semi-out" -->
-- Transformers  <!-- .element: class="fragment fade-in-then-semi-out" -->
+- Embedding  <!-- .element: class="fragment fade-in-then-semi-out" -->
+- Attention  <!-- .element: class="fragment fade-in-then-semi-out" -->
+- Multi Layer Perceptron  <!-- .element: class="fragment fade-in-then-semi-out" -->
 
 --
 

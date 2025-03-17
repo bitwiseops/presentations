@@ -2,7 +2,7 @@
 
 --
 
-## What is a LLM?
+## What is a LLM (1)
 
 <!-- .slide: class="align-center" -->
 
@@ -15,7 +15,7 @@ that predicts what word comes next for any piece of text.
 
 --
 
-## Guessing the next word
+## What is a LLM (2)
 
 <!-- .slide: class="align-center" -->
 
@@ -29,7 +29,7 @@ a given prompt typically gives a different answer each time it's run.
 
 --
 
-## Knowledge base
+## Feed
 
 <!-- .slide: class="align-center" -->
 
@@ -43,7 +43,7 @@ Larger models since then train on much, much more.
 
 --
 
-## Reasoning values
+## Tune
 
 <!-- .slide: class="align-center" -->
 
@@ -58,7 +58,7 @@ that the model gives for the next word on a given input.
 
 --
 
-## Learning process
+## Predict
 
 <!-- .slide: class="align-center" -->
 
@@ -75,22 +75,7 @@ seen before.
 
 --
 
-<!-- .slide: class="align-center" -->
-
-<img src="assets/6_20250214161955.png">
-
-Notes:
-The goal of auto-completing a random passage of text from the  
-internet is very different from the goal of being a good AI assistant.  
-To address this, chatbots undergo another type of training,  
-just as important, called reinforcement learning with human feedback.  
-Workers flag unhelpful or problematic predictions,  
-and their corrections further change the model's parameters,  
-making them more likely to give predictions that users prefer.
-
---
-
-## Exploiting GPUs
+## Hrdware Support
 
 <!-- .slide: class="align-center" -->
 
@@ -106,7 +91,7 @@ but then a team of researchers at Google introduced a new model known as the tra
 
 --
 
-## Transformers
+## Transformers (1)
 
 <!-- .slide: class="align-center" -->
 
@@ -115,6 +100,15 @@ but then a team of researchers at Google introduced a new model known as the tra
 Notes:
 Transformers don't read text from the start to the finish,  
 they soak it all in at once, in parallel.
+
+--
+
+<!-- .slide: class="align-center" -->
+
+## Transformers (2)
+
+<img src="assets/transformer.png" style="max-height: 55vh; ">
+
 
 --
 
@@ -136,7 +130,7 @@ corresponding word.
 
 <!-- .slide: class="align-center" -->
 
-## Attention mechanism
+## Attention Mechanism (1)
 
 <img src="assets/10_20250217115204.png">
 
@@ -148,7 +142,7 @@ and refine the meanings they encode based on the context around, all done in par
 
 --
 
-## Enhancing word meaning
+## Attention Mechanism (2)
 
 <!-- .slide: class="align-center" -->
 
@@ -160,11 +154,11 @@ context surrounding it to somehow encode the more specific notion of a riverbank
 
 --
 
-## Finding hidden patterns
+## Store and Retrieve Facts
 
 <!-- .slide: class="align-center" -->
 
-<img src="assets/12_20250217115256.png">
+<img src="assets/12_20250217115256.png" style="max-height: 55vh;">
 
 Notes:
 Transformers typically also include a second type of operation known  
@@ -173,7 +167,7 @@ capacity to store more patterns about language learned during training.
 
 --
 
-## Repeating over and over
+## Repeat
 
 <!-- .slide: class="align-center" -->
 
@@ -188,7 +182,7 @@ follows in the passage.
 
 --
 
-## Interpreting results
+## Next Word Selection
 
 <!-- .slide: class="align-center" -->
 
@@ -201,19 +195,3 @@ as well as everything the model learned during training,
 to produce a prediction of the next word.  
 Again, the model's prediction looks like a probability for every possible next word.
 
---
-
-## Growing fast
-
-<!-- .slide: class="align-center" -->
-
-<img src="assets/15_20250217120654.png">
-
-Notes:
-Although researchers design the framework for how each of these steps work,  
-it's important to understand that the specific behavior is an emergent phenomenon  
-based on how those hundreds of billions of parameters are tuned during training.  
-This makes it incredibly challenging to determine  
-why the model makes the exact predictions that it does.  
-What you can see is that when you use large language model predictions to autocomplete 
-a prompt, the words that it generates are uncannily fluent, fascinating, and even useful.

@@ -212,3 +212,35 @@ The analogy here is that just as grimoires were the repositories of arcane knowl
 --
 
 <img src="assets/41_20250213113442.png" style="max-height: 50vh;" >
+
+--
+
+## Emergent Abilities
+
+<!-- .slide: class="align-center" -->
+
+<img src="assets/15_20250217120654.png">
+
+Notes:
+Although researchers design the framework for how each of these steps work,  
+it's important to understand that the specific behavior is an emergent phenomenon  
+based on how those hundreds of billions of parameters are tuned during training.  
+This makes it incredibly challenging to determine  
+why the model makes the exact predictions that it does.  
+What you can see is that when you use large language model predictions to autocomplete 
+a prompt, the words that it generates are uncannily fluent, fascinating, and even useful.
+
+--
+
+<!-- .slide: class="align-center" -->
+
+<img src="assets/6_20250214161955.png">
+
+Notes:
+The goal of auto-completing a random passage of text from the  
+internet is very different from the goal of being a good AI assistant.  
+To address this, chatbots undergo another type of training,  
+just as important, called reinforcement learning with human feedback.  
+Workers flag unhelpful or problematic predictions,  
+and their corrections further change the model's parameters,  
+making them more likely to give predictions that users prefer.

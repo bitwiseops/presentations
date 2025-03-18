@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Large Language Models: The Digital Grimoires of the 21st Century</title>
+    <link rel="stylesheet" href="../dist/reset.css">
+    <link rel="stylesheet" href="../dist/reveal.css">
+    <link rel="stylesheet" href="../dist/theme/cloudogu.css">
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="../plugin/highlight/monokai.css">
+    <!-- Font awesome is required for the chalkboard plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../plugin/chalkboard/style.css">
+    <link rel="stylesheet" href="../plugin/customcontrols/style.css">
+    <link rel="stylesheet" href="../plugin/timeline/timeline.css">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown="./000-Introduction.md" data-separator="^(\r)?\n(\r)?---(\r)?\n(\r)?$" data-separator-vertical="^(\r)?\n(\r)?--(\r)?\n(\r)?$"></section>
+        <section data-markdown="./010-Natural Language Processing.md" data-separator="^(\r)?\n(\r)?---(\r)?\n(\r)?$" data-separator-vertical="^(\r)?\n(\r)?--(\r)?\n(\r)?$"></section>
+        <section data-markdown="./100-Deep Learning.md" data-separator="^(\r)?\n(\r)?---(\r)?\n(\r)?$" data-separator-vertical="^(\r)?\n(\r)?--(\r)?\n(\r)?$"></section>
+        <section data-markdown="./101-Gradient Descent.md" data-separator="^(\r)?\n(\r)?---(\r)?\n(\r)?$" data-separator-vertical="^(\r)?\n(\r)?--(\r)?\n(\r)?$"></section>
+        <section data-markdown="./102-Backpropagation.md" data-separator="^(\r)?\n(\r)?---(\r)?\n(\r)?$" data-separator-vertical="^(\r)?\n(\r)?--(\r)?\n(\r)?$"></section>
+        <section data-markdown="./110-Large Language Models.md" data-separator="^(\r)?\n(\r)?---(\r)?\n(\r)?$" data-separator-vertical="^(\r)?\n(\r)?--(\r)?\n(\r)?$"></section>
+        <section data-markdown="./120-Embedding.md" data-separator="^(\r)?\n(\r)?---(\r)?\n(\r)?$" data-separator-vertical="^(\r)?\n(\r)?--(\r)?\n(\r)?$"></section>
+        <section data-markdown="./130-Attention.md" data-separator="^(\r)?\n(\r)?---(\r)?\n(\r)?$" data-separator-vertical="^(\r)?\n(\r)?--(\r)?\n(\r)?$"></section>
+        <section data-markdown="./140-MLP.md" data-separator="^(\r)?\n(\r)?---(\r)?\n(\r)?$" data-separator-vertical="^(\r)?\n(\r)?--(\r)?\n(\r)?$"></section>
+      </div>
+    </div>
+    <script src="../dist/reveal.js"></script>
+    <script src="../plugin/notes/notes.js"></script>
+    <script src="../plugin/markdown/markdown.js"></script>
+    <script src="../plugin/highlight/highlight.js"></script>
+    <script src="../plugin/math/math.js"></script>
+    <script src="../plugin/zoom/zoom.js"></script>
+    <script src="../plugin/search/search.js"></script>
+    <script src="../plugin/chalkboard/plugin.js"></script>
+    <script src="../plugin/customcontrols/plugin.js"></script>
+    <script src="../plugin/anything/plugin.js"></script>
+    <script src="../plugin/timeline/timeline.js"></script>
+    <script src="../libs/pdfjs/build/pdf.mjs" type="module"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize(
+      {
+        hash: true,
+        history: true,
+        pdfSeparateFragments: false,
+        // Use the default (h.v), because the printed version will always have this anyway
+        slideNumber: 'true',
+        showNotes: false,
+        customcontrols:
+        {
+          controls: [
+          {
+            icon: '<i class="fa fa-pen-square"></i>',
+            title: 'Toggle chalkboard (B)',
+            action: 'RevealChalkboard.toggleChalkboard();'
+          },
+          {
+            icon: '<i class="fa fa-pen"></i>',
+            title: 'Toggle notes canvas (C)',
+            action: 'RevealChalkboard.toggleNotesCanvas();'
+          }, ]
+        },
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [
+          // Interpret Markdown in <section> elements
+          RevealMarkdown,
+          // Syntax highlight for <code> elements
+          RevealHighlight,
+          // Speaker notes
+          RevealNotes,
+          // Zoom in and out with Ctrl+Alt+click
+          RevealZoom,
+          RevealMath,
+          // Search slides  with Ctrl+Shift+f
+          RevealSearch,
+          RevealChalkboard,
+          RevealCustomControls,
+          RevealAnything
+        ],
+        anything: [
+        {
+          className: "pdf",
+          defaults:
+          {},
+          initialize: (function(container, options)
+          {
+            // get first child url component from window.location
+            var url = window.location.pathname.split('/')[1];
+            var pdf = document.createElement('iframe');
+            pdf.src = '../libs/pdfjs/web/viewer.html?file=' + window.location.pathname + options.pdf;
+            pdf.width = '100%';
+            pdf.height = '500';
+            container.appendChild(pdf);
+          })
+        },
+        {
+          className: "timeline",
+          defaults:
+          {},
+          initialize: (function(container, options)
+          {
+            window.timeline = new TL.Timeline(container, options.url,
+            {
+              font: '../plugin/timeline/font/roboto.css',
+            });
+          })
+        }, ],
+      });
+
+      function appendCanvasForPDFPage(container)
+      {
+        var canvas = document.createElement('canvas');
+        canvas.id = 'canvas-' + Math.random().toString(36).substr(2, 9);
+        container.appendChild(canvas);
+        return canvas.id;
+      }
+
+      function renderPDFPage(pdf, pageNumber, canvasId)
+      {
+        pdf.getPage(pageNumber).then((page) =>
+        {
+          console.log('Page loaded', canvas);
+          var scale = 1.5;
+          var viewport = page.getViewport(
+          {
+            scale: scale
+          });
+          // Prepare canvas using PDF page dimensions
+          var canvas = document.getElementById(canvasId);
+          var context = canvas.getContext('2d');
+          canvas.height = viewport.height;
+          canvas.width = viewport.width;
+          // Render PDF page into canvas context
+          var renderContext = {
+            canvasContext: context,
+            viewport: viewport
+          };
+          var renderTask = page.render(renderContext);
+        });
+      }
+    </script>
+  </body>
+</html>

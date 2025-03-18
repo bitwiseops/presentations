@@ -1,5 +1,7 @@
 # Natural Language Processing
 
+<!-- .slide: data-background-image="assets/matrix.gif" -->
+
 --
 
 ## Definition
@@ -137,3 +139,94 @@ These models use **neural networks** to predict the likelihood of a sequence of 
 <small style="font-size:xx-small"> [NLM Example](https://colab.research.google.com/drive/1ON9CO6LUtX1mbDmYIq3Pt5mSqoxzGxPr?usp=sharing) </small>
 
 
+--
+
+## Questions Time
+
+--
+
+## Qual è l'obiettivo principale del Natural Language Processing (NLP)?
+
+**A**) Tradurre dati binari in linguaggio umano  
+**B**) Abilitare i computer a comprendere, interpretare e generare il linguaggio umano  
+**C**) Progettare interfacce utente interattive  
+**D**) Ottimizzare l'hardware per l'elaborazione del linguaggio  
+
+Notes:  
+B
+
+--
+
+## Cosa rappresenta ELIZA nel contesto dell'NLP?
+
+**A**) Un avanzato modello di rete neurale  
+**B**) Un esempio storico di chatbot basato su regole che simula un terapeuta Rogeriano  
+**C**) Un sistema per la traduzione automatica di testi  
+**D**) Un algoritmo per l'analisi statistica dei testi  
+
+Notes:  
+B
+
+--
+
+## Quale di questi passaggi **NON** fa parte della tipica pipeline NLP?
+
+
+**A**) Raccolta dei dati  
+
+**B**) Estrazione delle caratteristiche  
+
+**C**) Valutazione del modello  
+
+**D**) Compilazione del codice  
+
+Notes:  
+D
+
+--
+
+## Quale tecnica di preprocessing consiste nel ridurre le parole alla loro forma base, spesso tramite la rimozione di suffissi?
+
+
+**A**) Tokenizzazione  
+
+**B**) Stemming  
+
+**C**) Normalizzazione  
+
+**D**) Rimozione dei Stop Words  
+
+Notes:  
+B
+
+--
+
+## Quale affermazione descrive correttamente un modello di linguaggio?
+
+
+**A**) È un algoritmo che traduce il linguaggio umano in dati numerici senza considerare il contesto  
+
+**B**) È un algoritmo statistico e computazionale che genera sequenze di parole basate sulla probabilità  
+
+**C**) È un sistema che analizza esclusivamente la struttura grammaticale del linguaggio  
+
+**D**) È un software per la traduzione automatica che utilizza regole fisse  
+
+Notes:  
+B
+
+--
+
+## Quale di questi passaggi **NON** fa parte del tipico processo della pipeline NLP?
+
+
+**A**) Estrazione delle caratteristiche  
+
+**B**) Modellazione  
+
+**C**) Deployment  
+
+**D**) Debugging del codice  
+
+Notes:  
+D

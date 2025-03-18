@@ -1,4 +1,6 @@
-# Large Language Models
+# Large Language Models <!-- .element: style="color: black;" -->
+
+<!-- .slide: data-background-image="assets/llm.gif" -->
 
 --
 

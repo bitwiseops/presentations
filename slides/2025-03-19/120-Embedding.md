@@ -1,5 +1,7 @@
 # Embedding
 
+<!-- .slide: data-background-image="assets/embed.gif" -->
+
 --
 
 <!-- .slide: class="align-center" -->

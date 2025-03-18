@@ -1,7 +1,11 @@
 
 # Attention
 
+<!-- .slide: data-background-image="assets/attention.gif" -->
+
 --
+
+## Multiple Meanings
 
 <!-- .slide: class="align-center" -->
 
@@ -18,6 +22,8 @@ based on the context.
 
 
 --
+
+## Token Embeddings
 
 <!-- .slide: class="align-center" -->
 
@@ -36,6 +42,8 @@ reference to the context.
 
 --
 
+## Meaning Directions
+
 <!-- .slide: class="align-center" -->
 
 
@@ -51,6 +59,8 @@ and that
 
 --
 
+## Attention Refinement
+
 <!-- .slide: class="align-center" -->
 
 
@@ -64,6 +74,8 @@ embedding to move it to one of these specific directions, as a function of the c
 
 
 --
+
+## Generic Embeddings
 
 <!-- .slide: class="align-center" -->
 
@@ -79,6 +91,8 @@ associated with lots of other large, tall nouns.
 
 
 --
+
+## Contextual Update
 
 <!-- .slide: class="align-center" -->
 
@@ -96,6 +110,8 @@ maybe correlated with vectors associated with Paris and France and things made o
 
 --
 
+## Further Refinement
+
 <!-- .slide: class="align-center" -->
 
 
@@ -110,6 +126,8 @@ so that it no longer correlates with large, tall things.
 
 
 --
+
+## Information Transfer
 
 <!-- .slide: class="align-center" -->
 
@@ -126,6 +144,8 @@ and potentially with information that's much richer than just a single word.
 
 
 --
+
+## Global Context
 
 <!-- .slide: class="align-center" -->
 
@@ -146,6 +166,8 @@ from the full context window that's relevant to predicting the next word.
 
 --
 
+## Context Influence
+
 <!-- .slide: class="align-center" -->
 
 
@@ -162,6 +184,8 @@ is having the adjectives adjust the meanings of their corresponding nouns.
 
 
 --
+
+## Position Encoding
 
 <!-- .slide: class="align-center" -->
 
@@ -181,6 +205,8 @@ but right now, all you need to know is that the entries of this vector are
 
 --
 
+## Embedding Refinement
+
 <!-- .slide: class="align-center" -->
 
 
@@ -195,6 +221,8 @@ nouns have ingested the meaning from their corresponding adjectives.
 
 
 --
+
+## Matrix Operations
 
 <!-- .slide: class="align-center" -->
 
@@ -216,6 +244,8 @@ based on tweaking and tuning a huge number of parameters to minimize some cost f
 
 --
 
+## Queries
+
 <!-- .slide: class="align-center" -->
 
 
@@ -230,6 +260,8 @@ asking the question, hey, are there any adjectives sitting in front of me?
 
 --
 
+## Responses
+
 <!-- .slide: class="align-center" -->
 
 
@@ -243,6 +275,8 @@ yeah, I'm an adjective and I'm in that position.
 
 
 --
+
+## Query Vector
 
 <!-- .slide: class="align-center" -->
 
@@ -259,6 +293,8 @@ This query vector though has a much smaller dimension than the embedding vector,
 
 --
 
+## Query Computation
+
 <!-- .slide: class="align-center" -->
 
 
@@ -274,6 +310,8 @@ Compressing things a bit, let's write that query vector as q,
 
 --
 
+## Token Querying
+
 <!-- .slide: class="align-center" -->
 
 
@@ -288,6 +326,8 @@ what this matrix does in a particular attention head is challenging to parse.
 
 
 --
+
+## Key Matrix
 
 <!-- .slide: class="align-center" -->
 
@@ -305,6 +345,8 @@ Conceptually, you want to think of the keys as potentially answering the queries
 
 --
 
+## Key Alignment
+
 <!-- .slide: class="align-center" -->
 
 
@@ -317,8 +359,9 @@ This key matrix is also full of tunable parameters, and just like the query matr
 it maps the embedding vectors to that same smaller dimensional space.  
 You think of the keys as matching the queries whenever they closely align with each other.
 
-
 --
+
+## Dot Product 
 
 <!-- .slide: class="align-center" -->
 
@@ -334,6 +377,8 @@ you compute a dot product between each possible key-query pair.
 
 --
 
+## Adjective Alignment
+
 <!-- .slide: class="align-center" -->
 
 
@@ -347,6 +392,8 @@ blue to vectors that are closely aligned with the query produced by the word cre
 
 
 --
+
+## Compact Notation
 
 <!-- .slide: class="align-center" -->
 
@@ -365,6 +412,8 @@ multiplying the embeddings by the query and the key matrices.
 
 --
 
+## Softmax Application
+
 <!-- .slide: class="align-center" -->
 
 
@@ -378,6 +427,8 @@ is meant to be understood to apply column by column.
 
 
 --
+
+## Simultaneus Prediction
 
 <!-- .slide: class="align-center" -->
 
@@ -401,6 +452,8 @@ be a single training example effectively acts as many.
 
 --
 
+## Causal Masking
+
 <!-- .slide: class="align-center" -->
 
 
@@ -416,6 +469,8 @@ since otherwise they could kind of give away the answer for what comes next.
 
 --
 
+## Masking Details
+
 <!-- .slide: class="align-center" -->
 
 
@@ -430,6 +485,8 @@ to somehow be forced to be zero.
 
 
 --
+
+## Masking Process
 
 <!-- .slide: class="align-center" -->
 
@@ -448,6 +505,8 @@ This process is called masking.
 
 --
 
+## Attention Update
+
 <!-- .slide: class="align-center" -->
 
 
@@ -464,6 +523,8 @@ allowing words to pass information to whichever other words they're relevant to.
 
 --
 
+## Embedding Shift
+
 <!-- .slide: class="align-center" -->
 
 
@@ -478,6 +539,8 @@ embedding space that more specifically encodes a Fluffy creature.
 
 
 --
+
+## Value Vectors
 
 <!-- .slide: class="align-center" -->
 
@@ -495,6 +558,8 @@ one of those embeddings to produce a sequence of value vectors.
 
 --
 
+## Value Aggregation
+
 <!-- .slide: class="align-center" -->
 
 
@@ -509,6 +574,8 @@ while all of the other value vectors get zeroed out, or at least nearly zeroed o
 
 
 --
+
+## Delta Update
 
 <!-- .slide: class="align-center" -->
 
@@ -529,6 +596,8 @@ contextually rich meaning, like that of a fluffy blue creature.
 
 --
 
+## Attention Head
+
 <!-- .slide: class="align-center" -->
 
 
@@ -541,6 +610,8 @@ Zooming out, this whole process is what you would describe as a single head of a
 
 
 --
+
+## Multi-head Attention
 
 <!-- .slide: class="align-center" -->
 
@@ -561,6 +632,8 @@ used to produce 96 sequences of value vectors.
 
 --
 
+## Parallel Processing
+
 <!-- .slide: class="align-center" -->
 
 
@@ -572,3 +645,74 @@ Notes:
 The overall idea is that by running many distinct heads in parallel, 
 you're giving the model the capacity to learn many distinct ways that context 
 changes meaning.
+
+--
+
+## Questions Time
+
+--
+
+## Domanda 1:  
+Quale problema è tipico degli embedding iniziali ottenuti da una lookup table nei modelli transformer?
+
+**A**) Essi assegnano significati contestuali univoci a ciascun token  
+**B**) Essi forniscono lo stesso embedding per un token indipendentemente dal contesto  
+**C**) Essi incorporano già tutte le informazioni semantiche  
+**D**) Essi aggiornano dinamicamente il significato dei token  
+
+Notes:  
+B
+
+--
+
+## Domanda 2:  
+Come può il modello differenziare i molteplici significati di una parola polisemica?
+
+**A**) Utilizzando embedding fissi che non variano con il contesto  
+**B**) Aggiornando gli embedding in base al contesto per orientarsi verso direzioni semantiche specifiche  
+**C**) Eliminando i significati meno frequenti durante la fase di pre-allenamento  
+**D**) Assegnando un significato casuale ad ogni occorrenza  
+
+Notes:  
+B
+
+--
+
+## Domanda 3:  
+In presenza di parole modificatrici, come viene aggiornato l'embedding di un termine?
+
+**A**) Rimane invariato perché il contesto non influenza l'embedding  
+**B**) Viene modificato per riflettere una specifica interpretazione in base alle parole circostanti  
+**C**) Viene sostituito da un embedding medio di tutti i termini nel contesto  
+**D**) Viene cancellato e ricreato da zero  
+
+Notes:  
+B
+
+--
+
+## Domanda 4:  
+Quale operazione consente di misurare la similarità tra la "domanda" (query) e la "chiave" (key) nel meccanismo di attenzione?
+
+**A**) La somma degli elementi dei vettori  
+**B**) Il calcolo del dot product tra il vettore query e il vettore key  
+**C**) La sottrazione dei vettori  
+**D**) La concatenazione dei vettori  
+
+Notes:  
+B
+
+--
+
+## Domanda 5:  
+Qual è lo scopo principale dell'applicazione del masking nel meccanismo di attenzione?
+
+**A**) Consentire ai token futuri di influenzare quelli passati  
+**B**) Impedire che informazioni da token successivi alterino il contesto dei token precedenti  
+**C**) Migliorare la velocità di calcolo delle operazioni matriciali  
+**D**) Normalizzare automaticamente gli embedding  
+
+Notes:  
+B
+
+

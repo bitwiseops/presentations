@@ -141,8 +141,3 @@ Notes:
 ## Learning
 
 <video autoplay loop controls muted src="assets/gradient_descent/ezgif-483a11ff189bd3.mp4">
-
---
-
-
-

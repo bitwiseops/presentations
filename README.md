@@ -8,7 +8,6 @@ Talk slides written in Markdown and rendered with reveal.js, published at [wiseb
 ![reveal.js](https://img.shields.io/badge/slides-reveal.js-f2e142)
 ![Markdown](https://img.shields.io/badge/source-Markdown-083fa1)
 ![GitHub Pages](https://img.shields.io/badge/hosting-GitHub%20Pages-222)
-[![License: MIT](https://img.shields.io/badge/license-MIT-green)](#license)
 
 </div>
 
@@ -81,4 +80,4 @@ The `master` branch tracks upstream [hakimel/reveal.js](https://github.com/hakim
 
 ## License
 
-The slides and text are my own work. reveal.js is © Hakim El Hattab, [MIT licensed](https://github.com/hakimel/reveal.js/blob/master/LICENSE).
+The slides and text are my own work, all rights reserved unless a license file says otherwise. reveal.js is © Hakim El Hattab, [MIT licensed](https://github.com/hakimel/reveal.js/blob/master/LICENSE).

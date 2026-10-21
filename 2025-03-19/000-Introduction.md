@@ -88,7 +88,7 @@ The Turing Test was designed to assess a machine’s ability to exhibit intellig
 
 ## Beyond the Imitation Game
 
-<div class="pdf"><!-- { "pdf": "assets/2206.04615.pdf" } --></div>
+[Beyond the Imitation Game Benchmark (BIG-bench), arXiv:2206.04615](https://arxiv.org/abs/2206.04615)
 
 
 Notes:

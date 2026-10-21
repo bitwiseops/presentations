@@ -3,7 +3,7 @@
 # 🎤 Presentations
 
 **How do you keep slide decks as plain text, in version control, and still present them in a browser?**
-Talk slides written in Markdown and rendered with reveal.js, published at [wisebit.me/presentations](https://wisebit.me/presentations/).
+Talk slides written in Markdown and rendered with reveal.js, published at [bitwiseops.github.io/presentations](https://bitwiseops.github.io/presentations/).
 
 ![reveal.js](https://img.shields.io/badge/slides-reveal.js-f2e142)
 ![Markdown](https://img.shields.io/badge/source-Markdown-083fa1)
@@ -26,7 +26,7 @@ Talk slides written in Markdown and rendered with reveal.js, published at [wiseb
 
 Each talk is a folder of Markdown files, one per chapter, loaded by reveal.js. There is no build step: the repository is served as static files by GitHub Pages.
 
-> **Live site.** <https://wisebit.me/presentations/>
+> **Live site.** <https://bitwiseops.github.io/presentations/>
 
 ## Talks
 
